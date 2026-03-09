@@ -22,6 +22,7 @@
             --warning: #FFA000;
             --error: #D32F2F;
             --gold: #C5A028;
+            --whatsapp: #25D366;
         }
         
         * {
@@ -471,6 +472,30 @@
             transform: none;
         }
         
+        .whatsapp-btn {
+            background: var(--whatsapp);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            margin-top: 8px;
+            text-decoration: none;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #20b859;
+            transform: translateY(-2px);
+        }
+        
         .status-badge {
             display: inline-block;
             padding: 5px 12px;
@@ -790,7 +815,7 @@
         </div>
         <div class="location-section" style="margin-top:10px;">
             <i class="fas fa-map-marker-alt"></i>
-            <span id="current-location">Ferreñafe, Lambayeque</span>
+            <span id="current-location">Lambayeque, Perú</span>
         </div>
     </header>
 
@@ -800,90 +825,31 @@
     <!-- Contenido Principal que cambia según el rol -->
     <main id="main-content"></main>
 
-    <!-- Modal para selección de tipo de cuenta -->
-    <div class="modal" id="account-type-modal">
+    <!-- Modal de Login -->
+    <div class="modal" id="login-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <i class="fas fa-user-circle"></i>
-                <div class="modal-title">Selecciona tipo de cuenta</div>
+                <i class="fas fa-lock"></i>
+                <div class="modal-title">Iniciar Sesión</div>
             </div>
             <div class="modal-body">
-                <p style="margin-bottom:25px; color: var(--text-light);">¿Qué tipo de cuenta deseas usar?</p>
-                <div style="display:flex; gap:15px;">
-                    <button id="select-usuario" style="flex:1; padding:18px; background:linear-gradient(135deg, #2E7D32, #1B5E20); color:white; border:none; border-radius:15px; cursor:pointer; font-weight:600; transition:transform 0.3s;">
-                        <i class="fas fa-user" style="font-size:1.8rem; display:block; margin-bottom:8px;"></i>
-                        Usuario
-                    </button>
-                    <button id="select-reciclador" style="flex:1; padding:18px; background:linear-gradient(135deg, #2196F3, #1976D2); color:white; border:none; border-radius:15px; cursor:pointer; font-weight:600; transition:transform 0.3s;">
-                        <i class="fas fa-recycle" style="font-size:1.8rem; display:block; margin-bottom:8px;"></i>
-                        Reciclador
-                    </button>
-                </div>
-                <button class="cancel-btn" id="close-account-modal" style="margin-top:20px; width:100%;">Cancelar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de registro para reciclador -->
-    <div class="modal" id="recycler-register-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <i class="fas fa-recycle"></i>
-                <div class="modal-title">Registro de Reciclador</div>
-            </div>
-            <div class="modal-body">
-                <form id="recycler-register-form">
+                <form id="login-form">
                     <div class="form-group">
-                        <label>Nombre completo</label>
-                        <input type="text" id="recycler-name" placeholder="Ej: Juan Pérez" required>
+                        <label>Usuario</label>
+                        <input type="text" id="login-username" placeholder="Ej: SILVA" required>
                     </div>
-                    
                     <div class="form-group">
-                        <label>DNI</label>
-                        <input type="text" id="recycler-dni" maxlength="8" placeholder="8 dígitos" required>
+                        <label>Contraseña</label>
+                        <input type="password" id="login-password" placeholder="••••••" required>
                     </div>
-                    
-                    <div class="form-group">
-                        <label>Teléfono</label>
-                        <input type="tel" id="recycler-phone" placeholder="Ej: 988888888" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Materiales que recoges</label>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item"><input type="checkbox" value="Plástico" checked> Plástico</div>
-                            <div class="checkbox-item"><input type="checkbox" value="Papel/Cartón" checked> Papel/Cartón</div>
-                            <div class="checkbox-item"><input type="checkbox" value="Vidrio"> Vidrio</div>
-                            <div class="checkbox-item"><input type="checkbox" value="Metales"> Metales</div>
-                            <div class="checkbox-item"><input type="checkbox" value="Electrónicos"> Electrónicos</div>
-                            <div class="checkbox-item"><input type="checkbox" value="Orgánico"> Orgánico</div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Zona de trabajo</label>
-                        <select id="recycler-zone">
-                            <option value="Ferreñafe">Ferreñafe</option>
-                            <option value="Chiclayo">Chiclayo</option>
-                            <option value="Lambayeque">Lambayeque</option>
-                            <option value="Pueblo Nuevo">Pueblo Nuevo</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Foto de perfil</label>
-                        <div class="photo-upload" id="recycler-photo-upload">
-                            <i class="fas fa-camera"></i>
-                            <p>Toca para subir una foto</p>
-                        </div>
-                        <input type="file" id="recycler-photo" accept="image/*" style="display: none;">
-                    </div>
-                    
                     <div class="action-buttons">
-                        <button type="button" class="cancel-btn" id="cancel-recycler-register">Cancelar</button>
-                        <button type="submit" class="confirm-btn">Registrarme</button>
+                        <button type="button" class="cancel-btn" id="close-login">Cancelar</button>
+                        <button type="submit" class="confirm-btn">Ingresar</button>
                     </div>
                 </form>
+                <p style="text-align:center; margin-top:15px; font-size:0.8rem; color:var(--text-light);">
+                    Usuarios de prueba: SILVA/123456 (usuario), MARIA/123456, JUANA/123456, YULY/123456 (recicladores)
+                </p>
             </div>
         </div>
     </div>
@@ -965,17 +931,27 @@
     <div id="toast-container"></div>
 
     <script>
-        // ==================== BASE DE DATOS SIMULADA ====================
+        // ==================== BASE DE DATOS SIMULADA CON USUARIOS REALES ====================
         let DB = {
             usuarios: [
-                { id: 1, nombre: "Usuario Ejemplo", telefono: "999999999", tipo: "usuario" }
+                { 
+                    id: 1, 
+                    nombre: "Isabel Silva", 
+                    telefono: "902662035", 
+                    usuario: "SILVA", 
+                    clave: "123456",
+                    tipo: "usuario",
+                    direccion: "Ferreñafe, Lambayeque"
+                }
             ],
             recicladores: [
                 { 
                     id: 1, 
                     nombre: "María López", 
                     dni: "12345678", 
-                    telefono: "988888888", 
+                    telefono: "959039640", 
+                    usuario: "MARIA",
+                    clave: "123456",
                     materiales: ["Plástico", "Vidrio", "Metales"],
                     zona: "Ferreñafe",
                     foto: null,
@@ -985,13 +961,29 @@
                 },
                 { 
                     id: 2, 
-                    nombre: "Carlos Ramírez", 
+                    nombre: "Juana Ramírez", 
                     dni: "87654321", 
-                    telefono: "977777777", 
+                    telefono: "902662035", 
+                    usuario: "JUANA",
+                    clave: "123456",
                     materiales: ["Papel/Cartón", "Electrónicos"],
-                    zona: "Ferreñafe",
+                    zona: "Chiclayo",
                     foto: null,
                     calificacion: 4.9,
+                    estado: "online",
+                    disponible: true
+                },
+                { 
+                    id: 3, 
+                    nombre: "Yuly Ynoñan", 
+                    dni: "11223344", 
+                    telefono: "950488334", 
+                    usuario: "YULY",
+                    clave: "123456",
+                    materiales: ["Orgánico", "Plástico"],
+                    zona: "Lambayeque",
+                    foto: null,
+                    calificacion: 4.7,
                     estado: "online",
                     disponible: true
                 }
@@ -1000,10 +992,10 @@
                 {
                     id: 1,
                     usuario_id: 1,
-                    usuario_nombre: "Usuario Ejemplo",
+                    usuario_nombre: "Isabel Silva",
                     material: "Plástico",
                     cantidad: "5 kg",
-                    direccion: "Av. Principal 123",
+                    direccion: "Av. Principal 123 - Ferreñafe",
                     horario: "Tarde",
                     estado: "pendiente",
                     fecha: "2024-03-15",
@@ -1012,10 +1004,10 @@
                 {
                     id: 2,
                     usuario_id: 1,
-                    usuario_nombre: "Usuario Ejemplo",
+                    usuario_nombre: "Isabel Silva",
                     material: "Papel/Cartón",
                     cantidad: "8 kg",
-                    direccion: "Av. Principal 123",
+                    direccion: "Av. Principal 123 - Ferreñafe",
                     horario: "Mañana",
                     estado: "aceptado",
                     fecha: "2024-03-14",
@@ -1026,31 +1018,31 @@
         };
 
         // ==================== ESTADO GLOBAL ====================
-        let currentUser = {
-            id: 1,
-            nombre: "Usuario Ejemplo",
-            tipo: "usuario"
-        };
-        
+        let currentUser = null; // { id, nombre, tipo }
         let currentRecycler = null;
         let nextId = {
             usuario: 2,
-            reciclador: 3,
+            reciclador: 4,
             solicitud: 3
         };
 
         // ==================== INICIALIZACIÓN ====================
         document.addEventListener('DOMContentLoaded', function() {
-            updateUI();
+            // Mostrar modal de login al inicio
+            openLoginModal();
             setupEventListeners();
             updateLocation();
         });
 
         // ==================== CONFIGURAR EVENTOS ====================
         function setupEventListeners() {
-            // Header - Perfil abre selector de cuenta
+            // Header - Perfil abre login si no hay sesión, o perfil si ya hay
             document.getElementById('profile-btn').addEventListener('click', function() {
-                openAccountSelector();
+                if (currentUser) {
+                    showProfile();
+                } else {
+                    openLoginModal();
+                }
             });
             
             document.getElementById('notifications-btn').addEventListener('click', function() {
@@ -1065,12 +1057,20 @@
             document.getElementById('nav-home').addEventListener('click', function(e) {
                 e.preventDefault();
                 setActiveNav(this);
-                updateUI();
+                if (currentUser) {
+                    updateUI();
+                } else {
+                    openLoginModal();
+                }
             });
             
             document.getElementById('nav-requests').addEventListener('click', function(e) {
                 e.preventDefault();
                 setActiveNav(this);
+                if (!currentUser) {
+                    openLoginModal();
+                    return;
+                }
                 if (currentUser.tipo === 'usuario') {
                     showUserRequests();
                 } else {
@@ -1081,56 +1081,32 @@
             document.getElementById('nav-history').addEventListener('click', function(e) {
                 e.preventDefault();
                 setActiveNav(this);
+                if (!currentUser) {
+                    openLoginModal();
+                    return;
+                }
                 showHistory();
             });
             
             document.getElementById('nav-profile').addEventListener('click', function(e) {
                 e.preventDefault();
                 setActiveNav(this);
-                showProfile();
-            });
-            
-            // Modal de selector de cuenta
-            document.getElementById('select-usuario').addEventListener('click', function() {
-                changeUserType('usuario');
-                closeAccountSelector();
-            });
-            
-            document.getElementById('select-reciclador').addEventListener('click', function() {
-                // Si ya es reciclador, cambiar directamente
-                if (currentUser.tipo === 'reciclador') {
-                    changeUserType('reciclador');
-                    closeAccountSelector();
+                if (currentUser) {
+                    showProfile();
                 } else {
-                    // Abrir registro de reciclador
-                    closeAccountSelector();
-                    openRecyclerRegister();
+                    openLoginModal();
                 }
             });
             
-            document.getElementById('close-account-modal').addEventListener('click', closeAccountSelector);
-            
-            // Modal de registro de reciclador
-            document.getElementById('cancel-recycler-register').addEventListener('click', function() {
-                document.getElementById('recycler-register-modal').style.display = 'none';
+            // Login modal
+            document.getElementById('close-login').addEventListener('click', closeLoginModal);
+            document.getElementById('login-modal').addEventListener('click', function(e) {
+                if (e.target === this) closeLoginModal();
             });
             
-            document.getElementById('recycler-photo-upload').addEventListener('click', function() {
-                document.getElementById('recycler-photo').click();
-            });
-            
-            document.getElementById('recycler-photo').addEventListener('change', function(e) {
-                if (e.target.files.length > 0) {
-                    document.getElementById('recycler-photo-upload').innerHTML = `
-                        <i class="fas fa-check-circle" style="color: #4CAF50;"></i>
-                        <p>Foto cargada: ${e.target.files[0].name}</p>
-                    `;
-                }
-            });
-            
-            document.getElementById('recycler-register-form').addEventListener('submit', function(e) {
+            document.getElementById('login-form').addEventListener('submit', function(e) {
                 e.preventDefault();
-                registerRecycler();
+                doLogin();
             });
             
             // Modal de pickup
@@ -1157,129 +1133,55 @@
             });
         }
 
-        // ==================== FUNCIONES DE CAMBIO DE CUENTA ====================
-        function openAccountSelector() {
-            document.getElementById('account-type-modal').style.display = 'flex';
+        // ==================== FUNCIONES DE LOGIN ====================
+        function openLoginModal() {
+            document.getElementById('login-modal').style.display = 'flex';
         }
         
-        function closeAccountSelector() {
-            document.getElementById('account-type-modal').style.display = 'none';
+        function closeLoginModal() {
+            document.getElementById('login-modal').style.display = 'none';
         }
         
-        function openRecyclerRegister() {
-            document.getElementById('recycler-register-modal').style.display = 'flex';
-        }
-        
-        function registerRecycler() {
-            const nombre = document.getElementById('recycler-name').value;
-            const dni = document.getElementById('recycler-dni').value;
-            const telefono = document.getElementById('recycler-phone').value;
+        function doLogin() {
+            const username = document.getElementById('login-username').value.trim().toUpperCase();
+            const password = document.getElementById('login-password').value;
             
-            // Validar
-            if (!nombre || !dni || !telefono) {
-                showToast('Completa todos los campos', 'warning');
-                return;
-            }
-            
-            if (dni.length !== 8) {
-                showToast('DNI debe tener 8 dígitos', 'warning');
-                return;
-            }
-            
-            // Obtener materiales seleccionados
-            const materiales = [];
-            document.querySelectorAll('#recycler-register-form input[type="checkbox"]:checked').forEach(cb => {
-                materiales.push(cb.value);
-            });
-            
-            if (materiales.length === 0) {
-                showToast('Selecciona al menos un material', 'warning');
-                return;
-            }
-            
-            const zona = document.getElementById('recycler-zone').value;
-            
-            // Crear nuevo reciclador
-            const newRecycler = {
-                id: nextId.reciclador++,
-                nombre: nombre,
-                dni: dni,
-                telefono: telefono,
-                materiales: materiales,
-                zona: zona,
-                foto: null,
-                calificacion: 5.0,
-                estado: "online",
-                disponible: true
-            };
-            
-            DB.recicladores.push(newRecycler);
-            
-            // Crear usuario asociado
-            const newUser = {
-                id: nextId.usuario++,
-                nombre: nombre,
-                telefono: telefono,
-                tipo: "reciclador"
-            };
-            
-            DB.usuarios.push(newUser);
-            
-            // Cambiar a cuenta de reciclador
-            currentUser = {
-                id: newUser.id,
-                nombre: nombre,
-                tipo: "reciclador"
-            };
-            
-            currentRecycler = newRecycler;
-            
-            showToast('¡Registro exitoso! Bienvenido como reciclador', 'success');
-            document.getElementById('recycler-register-modal').style.display = 'none';
-            updateUI();
-        }
-        
-        function changeUserType(tipo) {
-            if (tipo === 'usuario') {
-                // Buscar o crear usuario por defecto
-                let user = DB.usuarios.find(u => u.tipo === 'usuario');
-                if (!user) {
-                    user = {
-                        id: nextId.usuario++,
-                        nombre: "Usuario Ejemplo",
-                        telefono: "999999999",
-                        tipo: "usuario"
-                    };
-                    DB.usuarios.push(user);
-                }
+            // Buscar en usuarios
+            const user = DB.usuarios.find(u => u.usuario === username && u.clave === password);
+            if (user) {
                 currentUser = {
                     id: user.id,
                     nombre: user.nombre,
-                    tipo: "usuario"
+                    tipo: 'usuario'
                 };
                 currentRecycler = null;
-                showToast('Ahora eres Usuario', 'success');
-            } else {
-                // Si hay recicladores registrados, tomar el primero
-                if (DB.recicladores.length > 0) {
-                    const recycler = DB.recicladores[0];
-                    currentUser = {
-                        id: recycler.id,
-                        nombre: recycler.nombre,
-                        tipo: "reciclador"
-                    };
-                    currentRecycler = recycler;
-                    showToast('Ahora eres Reciclador', 'success');
-                } else {
-                    showToast('No hay recicladores registrados', 'warning');
-                    return;
-                }
+                showToast(`Bienvenido ${user.nombre}`, 'success');
+                closeLoginModal();
+                updateUI();
+                return;
             }
-            updateUI();
+            
+            // Buscar en recicladores
+            const recycler = DB.recicladores.find(r => r.usuario === username && r.clave === password);
+            if (recycler) {
+                currentUser = {
+                    id: recycler.id,
+                    nombre: recycler.nombre,
+                    tipo: 'reciclador'
+                };
+                currentRecycler = recycler;
+                showToast(`Bienvenido ${recycler.nombre}`, 'success');
+                closeLoginModal();
+                updateUI();
+                return;
+            }
+            
+            showToast('Usuario o contraseña incorrectos', 'warning');
         }
 
         // ==================== ACTUALIZAR UI ====================
         function updateUI() {
+            if (!currentUser) return;
             updateDashboard();
             updateMainContent();
         }
@@ -1379,6 +1281,9 @@
                         toggle.addEventListener('change', function() {
                             if (currentRecycler) {
                                 currentRecycler.disponible = this.checked;
+                                // Actualizar en DB también
+                                const recyclerInDB = DB.recicladores.find(r => r.id === currentRecycler.id);
+                                if (recyclerInDB) recyclerInDB.disponible = this.checked;
                                 showToast(`Ahora estás ${currentRecycler.disponible ? 'disponible' : 'no disponible'}`, 
                                          currentRecycler.disponible ? 'success' : 'warning');
                                 updateUI();
@@ -1403,7 +1308,6 @@
 
         function getUserContent() {
             const pendientes = DB.solicitudes.filter(s => s.usuario_id === currentUser.id && s.estado !== 'completado');
-            const completadas = DB.solicitudes.filter(s => s.usuario_id === currentUser.id && s.estado === 'completado');
             
             const pendientesHTML = pendientes.map(s => `
                 <div class="request-card">
@@ -1415,8 +1319,17 @@
                     <div class="request-details">
                         <div class="detail-item"><i class="fas fa-weight-hanging"></i> ${s.cantidad}</div>
                         <div class="detail-item"><i class="fas fa-clock"></i> ${s.horario}</div>
-                        ${s.reciclador_nombre ? `<div class="detail-item"><i class="fas fa-user"></i> Reciclador: ${s.reciclador_nombre}</div>` : ''}
+                        ${s.reciclador_nombre ? `
+                        <div class="detail-item"><i class="fas fa-user"></i> Reciclador: ${s.reciclador_nombre}</div>
+                        ` : ''}
                     </div>
+                    ${s.reciclador_nombre ? `
+                        <a href="https://wa.me/51${getRecyclerPhone(s.reciclador_id)}?text=Hola%20${s.reciclador_nombre},%20soy%20${currentUser.nombre}%20y%20tengo%20una%20solicitud%20de%20recojo%20de%20${s.material}." 
+                           target="_blank" 
+                           class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                        </a>
+                    ` : ''}
                 </div>
             `).join('');
             
@@ -1467,9 +1380,17 @@
                     <div style="display:flex; gap:5px; margin:10px 0; flex-wrap:wrap;">
                         ${r.materiales.map(m => `<span style="background:#e3f2fd; padding:5px 12px; border-radius:20px; font-size:0.75rem; font-weight:500;">${m}</span>`).join('')}
                     </div>
-                    <button class="accept-btn coordinate-btn" style="background:linear-gradient(135deg, var(--accent), #1976D2);" data-recycler-id="${r.id}">
-                        <i class="fas fa-handshake"></i> Coordinar directo
-                    </button>
+                    <div style="display:flex; gap:8px;">
+                        <button class="accept-btn coordinate-btn" style="flex:1; background:linear-gradient(135deg, var(--accent), #1976D2);" data-recycler-id="${r.id}">
+                            <i class="fas fa-handshake"></i> Coordinar
+                        </button>
+                        <a href="https://wa.me/51${r.telefono}?text=Hola%20${r.nombre},%20soy%20${currentUser.nombre}%20y%20necesito%20reciclar." 
+                           target="_blank" 
+                           class="whatsapp-btn" 
+                           style="flex:0.5; background:var(--whatsapp);">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
                 </div>
             `).join('') || '<p style="text-align:center; color:var(--text-light);">No hay recicladores disponibles</p>';
         }
@@ -1496,9 +1417,17 @@
                         <div class="detail-item"><i class="fas fa-weight-hanging"></i> ${s.cantidad}</div>
                         <div class="detail-item"><i class="fas fa-clock"></i> ${s.horario}</div>
                     </div>
-                    <button class="accept-btn" onclick="acceptSolicitud(${s.id})" ${!recycler.disponible ? 'disabled' : ''}>
-                        <i class="fas fa-check-circle"></i> Aceptar recojo
-                    </button>
+                    <div style="display:flex; gap:8px;">
+                        <button class="accept-btn" onclick="acceptSolicitud(${s.id})" style="flex:1;" ${!recycler.disponible ? 'disabled' : ''}>
+                            <i class="fas fa-check-circle"></i> Aceptar
+                        </button>
+                        <a href="https://wa.me/51${getUserPhone(s.usuario_id)}?text=Hola%20${s.usuario_nombre},%20soy%20${recycler.nombre}%20y%20puedo%20atender%20tu%20solicitud." 
+                           target="_blank" 
+                           class="whatsapp-btn" 
+                           style="flex:0.5; background:var(--whatsapp);">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
                 </div>
             `).join('');
             
@@ -1513,6 +1442,11 @@
                         <div class="detail-item"><i class="fas fa-user"></i> ${s.usuario_nombre}</div>
                         <div class="detail-item"><i class="fas fa-weight-hanging"></i> ${s.cantidad}</div>
                     </div>
+                    <a href="https://wa.me/51${getUserPhone(s.usuario_id)}?text=Hola%20${s.usuario_nombre},%20soy%20${recycler.nombre}%20y%20voy%20en%20camino." 
+                       target="_blank" 
+                       class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                    </a>
                 </div>
             `).join('');
             
@@ -1631,8 +1565,17 @@
                         <div class="detail-item"><i class="fas fa-calendar"></i> ${s.fecha}</div>
                         <div class="detail-item"><i class="fas fa-weight-hanging"></i> ${s.cantidad}</div>
                         <div class="detail-item"><i class="fas fa-clock"></i> ${s.horario}</div>
-                        ${s.reciclador_nombre ? `<div class="detail-item"><i class="fas fa-user"></i> Reciclador: ${s.reciclador_nombre}</div>` : ''}
+                        ${s.reciclador_nombre ? `
+                        <div class="detail-item"><i class="fas fa-user"></i> Reciclador: ${s.reciclador_nombre}</div>
+                        ` : ''}
                     </div>
+                    ${s.reciclador_nombre ? `
+                        <a href="https://wa.me/51${getRecyclerPhone(s.reciclador_id)}?text=Hola%20${s.reciclador_nombre},%20soy%20${currentUser.nombre}%20y%20tengo%20una%20solicitud." 
+                           target="_blank" 
+                           class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Contactar
+                        </a>
+                    ` : ''}
                 </div>
             `).join('');
             
@@ -1647,7 +1590,7 @@
         }
 
         function showRecyclerRequests() {
-            updateMainContent(); // Ya muestra las solicitudes
+            updateMainContent();
         }
 
         function showHistory() {
@@ -1713,21 +1656,22 @@
             const main = document.getElementById('main-content');
             
             if (currentUser.tipo === 'usuario') {
+                const user = DB.usuarios.find(u => u.id === currentUser.id);
                 main.innerHTML = `
                     <section class="section">
                         <h2 class="section-title"><i class="fas fa-user"></i> Mi perfil</h2>
                         <div style="text-align:center; margin-bottom:25px;">
                             <div style="width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg, var(--primary), var(--primary-dark)); color:white; display:flex; align-items:center; justify-content:center; font-size:2.5rem; margin:0 auto 15px; border:3px solid var(--gold);">👤</div>
-                            <h3 style="font-size:1.5rem; margin-bottom:5px;">${currentUser.nombre}</h3>
+                            <h3 style="font-size:1.5rem; margin-bottom:5px;">${user.nombre}</h3>
                             <p style="color:var(--text-light);"><i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> Ferreñafe, Lambayeque</p>
                         </div>
                         <div style="background:#f8f9fa; padding:20px; border-radius:15px;">
-                            <div style="display:flex; justify-content:space-between; padding:8px 0;"><strong>Email:</strong> usuario@email.com</div>
-                            <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Teléfono:</strong> +51 999 999 999</div>
+                            <div style="display:flex; justify-content:space-between; padding:8px 0;"><strong>Teléfono:</strong> ${user.telefono}</div>
+                            <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Usuario:</strong> ${user.usuario}</div>
                             <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Tipo:</strong> Usuario</div>
                         </div>
-                        <button class="accept-btn" style="margin-top:20px;" onclick="openAccountSelector()">
-                            <i class="fas fa-exchange-alt"></i> Cambiar tipo de cuenta
+                        <button class="accept-btn" style="margin-top:20px;" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Cerrar sesión
                         </button>
                     </section>
                 `;
@@ -1744,11 +1688,12 @@
                         <div style="background:#f8f9fa; padding:20px; border-radius:15px;">
                             <div style="display:flex; justify-content:space-between; padding:8px 0;"><strong>DNI:</strong> ${recycler.dni}</div>
                             <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Teléfono:</strong> ${recycler.telefono}</div>
+                            <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Usuario:</strong> ${recycler.usuario}</div>
                             <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Zona:</strong> ${recycler.zona}</div>
                             <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Materiales:</strong> ${recycler.materiales.join(', ')}</div>
                         </div>
-                        <button class="accept-btn" style="margin-top:20px;" onclick="openAccountSelector()">
-                            <i class="fas fa-exchange-alt"></i> Cambiar tipo de cuenta
+                        <button class="accept-btn" style="margin-top:20px;" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Cerrar sesión
                         </button>
                     </section>
                 `;
@@ -1791,6 +1736,16 @@
             return icons[material] || '📦';
         }
 
+        function getRecyclerPhone(recyclerId) {
+            const recycler = DB.recicladores.find(r => r.id === recyclerId);
+            return recycler ? recycler.telefono : '';
+        }
+
+        function getUserPhone(userId) {
+            const user = DB.usuarios.find(u => u.id === userId);
+            return user ? user.telefono : '';
+        }
+
         function setActiveNav(activeItem) {
             document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
             activeItem.classList.add('active');
@@ -1830,6 +1785,16 @@
                 document.getElementById('current-location').textContent = locations[i];
             }, 10000);
         }
+
+        function logout() {
+            currentUser = null;
+            currentRecycler = null;
+            document.getElementById('dashboard-container').innerHTML = '';
+            document.getElementById('main-content').innerHTML = '';
+            openLoginModal();
+            showToast('Sesión cerrada', 'info');
+        }
     </script>
 </body>
 </html>
+```
