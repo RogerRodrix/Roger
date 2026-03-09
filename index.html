@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REJU - Reciclando Juntos</title>
+    <title>ReJu - Reciclando Juntos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap');
+        
         :root {
             --primary: #2E7D32;
             --primary-light: #4CAF50;
@@ -19,92 +21,309 @@
             --success: #388E3C;
             --warning: #FFA000;
             --error: #D32F2F;
+            --gold: #C5A028;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
         }
         
         body {
             background-color: var(--background);
             color: var(--text);
             line-height: 1.6;
-            padding-bottom: 80px; /* Para el bottom nav */
+            padding-bottom: 80px;
         }
         
-        /* Header Principal */
+        /* Header Principal con Logo Elegante */
         .main-header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, #1B5E20, #0D3C0F);
             color: white;
-            padding: 20px 15px;
+            padding: 15px 20px;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border-bottom: 3px solid var(--gold);
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        
-        .logo-section {
-            display: flex;
-            align-items: center;
+            flex-wrap: wrap;
             gap: 10px;
         }
         
-        .logo-section h1 {
-            font-size: 1.4rem;
-            font-weight: 700;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-elegante {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+        
+        .logo-reju {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #FFFFFF, #E0E0E0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .logo-reju::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+        
+        .logo-reciclando {
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #E0E0E0;
+            margin-top: 5px;
+        }
+        
+        .logo-sostenibilidad {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 3px;
+        }
+        
+        .logo-sostenibilidad i {
+            color: var(--gold);
+            font-size: 0.7rem;
+        }
+        
+        .logo-sostenibilidad span {
+            font-size: 0.65rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #B0B0B0;
+            text-transform: uppercase;
         }
         
         .location-section {
             display: flex;
             align-items: center;
             gap: 5px;
-            font-size: 0.9rem;
-            background: rgba(255,255,255,0.15);
-            padding: 5px 10px;
-            border-radius: 20px;
-            margin-top: 5px;
+            font-size: 0.8rem;
+            background: rgba(255,255,255,0.08);
+            padding: 6px 12px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+        }
+        
+        .location-section i {
+            color: var(--gold);
         }
         
         .header-actions {
             display: flex;
-            gap: 15px;
+            gap: 8px;
         }
         
         .header-actions button {
-            background: none;
-            border: none;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
             color: white;
-            font-size: 1.2rem;
+            font-size: 1rem;
             cursor: pointer;
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
         }
         
         .header-actions button:hover {
-            background-color: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.2);
+            border-color: var(--gold);
+            transform: translateY(-2px);
         }
         
-        /* Secciones principales */
+        /* Dashboard Header */
+        .dashboard-header {
+            background: var(--surface);
+            margin: 20px;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        
+        .welcome-message {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .user-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            border: 3px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .user-info h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--primary-dark);
+        }
+        
+        .user-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Status Toggle para Reciclador */
+        .status-toggle {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .status-toggle span {
+            font-weight: 600;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--success);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(30px);
+        }
+        
+        .status-text {
+            font-weight: 600;
+            color: var(--success);
+        }
+        
+        .status-text.disabled {
+            color: var(--error);
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        /* Secciones */
         .section {
             background-color: var(--surface);
-            margin: 15px;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin: 20px;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
         }
         
         .section-title {
@@ -115,19 +334,25 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            border-bottom: 2px solid rgba(46, 125, 50, 0.1);
+            padding-bottom: 10px;
         }
         
-        /* Sección 1: Reciclajes por tipo */
+        .section-title i {
+            font-size: 1.3rem;
+            color: var(--gold);
+        }
+        
+        /* Materiales Grid */
         .materials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
-            margin-bottom: 20px;
         }
         
         .material-card {
             background: linear-gradient(135deg, #f8f9fa, #e9f5e9);
-            border-radius: 12px;
+            border-radius: 15px;
             padding: 15px 10px;
             text-align: center;
             cursor: pointer;
@@ -137,8 +362,8 @@
         
         .material-card:hover {
             transform: translateY(-5px);
-            border-color: var(--primary-light);
-            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.1);
+            border-color: var(--gold);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
         
         .material-icon {
@@ -147,67 +372,82 @@
         }
         
         .material-name {
-            font-weight: 500;
-            font-size: 0.9rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--primary-dark);
         }
         
-        /* Sección 2: Solicitud de recojo */
-        .pickup-requests {
+        /* Listas */
+        .requests-list, .recyclers-list, .history-list {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
         
-        .pickup-card {
-            background: linear-gradient(135deg, #fff8e1, #fff3e0);
-            border-radius: 12px;
-            padding: 15px;
-            border-left: 4px solid var(--secondary);
+        .request-card, .recycler-card, .history-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 18px;
+            border-left: 4px solid var(--gold);
+            transition: transform 0.3s;
         }
         
-        .pickup-header {
+        .request-card:hover {
+            transform: translateX(5px);
+        }
+        
+        .request-header, .recycler-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 12px;
+            margin-bottom: 12px;
         }
         
-        .pickup-icon {
+        .request-icon {
             font-size: 1.5rem;
-            color: var(--secondary);
+            color: var(--gold);
         }
         
-        .pickup-title {
+        .request-title {
             font-weight: 600;
             flex: 1;
+            font-size: 1rem;
         }
         
-        .pickup-details {
+        .request-distance {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        
+        .request-details {
             display: flex;
             flex-direction: column;
-            gap: 5px;
-            margin-bottom: 15px;
+            gap: 8px;
+            margin: 12px 0;
+            font-size: 0.9rem;
         }
         
         .detail-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
+            gap: 10px;
             color: var(--text-light);
         }
         
-        .price-range {
-            color: var(--success);
-            font-weight: 600;
+        .detail-item i {
+            width: 18px;
+            color: var(--gold);
         }
         
-        .request-btn {
-            background: linear-gradient(135deg, var(--secondary), #F57C00);
+        .accept-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
@@ -215,254 +455,52 @@
             justify-content: center;
             gap: 8px;
             width: 100%;
-            transition: transform 0.3s;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
-        .request-btn:hover {
+        .accept-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
         }
         
-        /* Sección 3: Recicladores disponibles */
-        .recyclers-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+        .accept-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
         }
         
-        .recycler-card {
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-            border-radius: 12px;
-            padding: 15px;
-            border-left: 4px solid var(--accent);
-        }
-        
-        .recycler-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 10px;
-        }
-        
-        .recycler-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), #1976D2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .recycler-info {
-            flex: 1;
-        }
-        
-        .recycler-name {
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
             font-weight: 600;
-            margin-bottom: 2px;
+            letter-spacing: 0.5px;
         }
         
-        .recycler-distance {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        .status-pendiente {
+            background: #fff3cd;
+            color: #856404;
         }
         
-        .recycler-rating {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: #FFC107;
+        .status-aceptado {
+            background: #d4edda;
+            color: #155724;
         }
         
-        .recycler-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 15px;
+        .status-en_camino {
+            background: #cce5ff;
+            color: #004085;
         }
         
-        .recycler-tag {
-            background-color: rgba(33, 150, 243, 0.1);
-            color: var(--accent);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        .status-completado {
+            background: #d1e7dd;
+            color: #0f5132;
         }
         
-        .arrival-time {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            color: var(--success);
-            margin-bottom: 15px;
-        }
-        
-        .coordinate-btn {
-            background: linear-gradient(135deg, var(--accent), #1976D2);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-        }
-        
-        /* Sección 4: Beneficios del usuario */
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .benefit-card {
-            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-        }
-        
-        .benefit-icon {
-            font-size: 1.8rem;
-            margin-bottom: 8px;
-            color: var(--primary);
-        }
-        
-        .benefit-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: var(--primary-dark);
-        }
-        
-        .benefit-label {
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-        
-        .rewards-section {
-            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
-            border-radius: 12px;
-            padding: 15px;
-            margin-top: 15px;
-        }
-        
-        .rewards-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--primary-dark);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .rewards-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .reward-tag {
-            background-color: rgba(76, 175, 80, 0.15);
-            color: var(--primary-dark);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        /* Sección 5: Impacto ambiental */
-        .impact-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .impact-card {
-            background: linear-gradient(135deg, #e0f2f1, #b2dfdb);
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-        }
-        
-        .impact-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: var(--primary-dark);
-        }
-        
-        .impact-label {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-        
-        .community-ranking {
-            background: linear-gradient(135deg, #fff3e0, #ffccbc);
-            border-radius: 12px;
-            padding: 15px;
-            margin-top: 15px;
-        }
-        
-        .ranking-title {
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--primary-dark);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .ranking-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .ranking-position {
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(135deg, var(--secondary), #F57C00);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-        
-        .ranking-name {
-            flex: 1;
-            font-weight: 500;
-        }
-        
-        .ranking-points {
-            color: var(--success);
-            font-weight: 600;
-        }
-        
-        /* Modal de Material */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -470,8 +508,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
             z-index: 1000;
             align-items: center;
             justify-content: center;
@@ -480,12 +518,13 @@
         
         .modal-content {
             background-color: white;
-            border-radius: 20px;
+            border-radius: 25px;
             width: 100%;
             max-width: 500px;
             max-height: 90vh;
             overflow-y: auto;
-            animation: slideUp 0.3s;
+            animation: slideUp 0.4s ease-out;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         
         @keyframes slideUp {
@@ -497,23 +536,24 @@
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             padding: 20px;
-            border-radius: 20px 20px 0 0;
+            border-radius: 25px 25px 0 0;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
         
-        .modal-icon {
-            font-size: 2rem;
+        .modal-header i {
+            font-size: 1.8rem;
+            color: var(--gold);
         }
         
         .modal-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 600;
         }
         
         .modal-body {
-            padding: 20px;
+            padding: 25px;
         }
         
         .form-group {
@@ -523,7 +563,8 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.9rem;
             color: var(--text);
         }
         
@@ -531,89 +572,94 @@
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
         }
         
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: var(--primary);
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(197, 160, 40, 0.1);
         }
         
-        .quantity-input {
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 5px;
+        }
+        
+        .checkbox-item {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
         }
         
-        .quantity-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--primary);
-            background: white;
-            color: var(--primary);
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .quantity-value {
-            flex: 1;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: 600;
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            accent-color: var(--gold);
         }
         
         .photo-upload {
-            border: 2px dashed var(--primary-light);
-            border-radius: 8px;
+            border: 2px dashed var(--gold);
+            border-radius: 15px;
             padding: 30px;
             text-align: center;
             cursor: pointer;
             transition: background-color 0.3s;
+            background: #fafafa;
         }
         
         .photo-upload:hover {
-            background-color: rgba(76, 175, 80, 0.05);
+            background-color: rgba(197, 160, 40, 0.05);
         }
         
         .photo-upload i {
             font-size: 2.5rem;
-            color: var(--primary-light);
+            color: var(--gold);
             margin-bottom: 10px;
         }
         
         .action-buttons {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 25px;
         }
         
         .action-buttons button {
             flex: 1;
-            padding: 15px;
-            border-radius: 8px;
+            padding: 14px;
+            border-radius: 12px;
             font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
             border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s;
         }
         
         .cancel-btn {
-            background-color: #f5f5f5;
+            background-color: #f0f0f0;
             color: var(--text);
+        }
+        
+        .cancel-btn:hover {
+            background-color: #e0e0e0;
         }
         
         .confirm-btn {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
+        }
+        
+        .confirm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
         }
         
         /* Bottom Navigation */
@@ -626,8 +672,9 @@
             display: flex;
             justify-content: space-around;
             padding: 10px 0;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
             z-index: 100;
+            border-top: 1px solid rgba(0,0,0,0.05);
         }
         
         .nav-item {
@@ -638,436 +685,256 @@
             text-decoration: none;
             color: var(--text-light);
             flex: 1;
-            padding: 5px;
+            padding: 8px;
+            font-size: 0.75rem;
+            transition: all 0.3s;
+            border-radius: 12px;
         }
         
         .nav-item.active {
             color: var(--primary);
+            background: rgba(46, 125, 50, 0.05);
         }
         
         .nav-icon {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
         
-        .nav-label {
-            font-size: 0.7rem;
+        /* Toast */
+        #toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
         
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .materials-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
-            
-            .benefits-grid, .impact-stats {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-            
-            .material-icon {
-                font-size: 1.8rem;
-            }
+        .toast {
+            background: white;
+            padding: 14px 18px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 320px;
+            border-left: 4px solid;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            font-weight: 500;
         }
         
+        .toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .toast.success { border-left-color: #4CAF50; }
+        .toast.info { border-left-color: #2196F3; }
+        .toast.warning { border-left-color: #FF9800; }
+        
+        .toast i.success { color: #4CAF50; }
+        .toast i.info { color: #2196F3; }
+        .toast i.warning { color: #FF9800; }
+        
+        /* Responsive */
         @media (max-width: 480px) {
             .materials-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .benefits-grid, .impact-stats {
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
             
-            .section {
-                margin: 10px;
-                padding: 15px;
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .logo-reju {
+                font-size: 2rem;
+            }
+            
+            .section, .dashboard-header {
+                margin: 15px;
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header Principal -->
+    <!-- Header Principal con Logo Elegante Original -->
     <header class="main-header">
         <div class="header-content">
-            <div class="logo-section">
-                <div>
-                    <h1>RECICLANDO JUNTOS</h1>
-                    <div class="location-section">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span id="current-location">Ferreñafe, Lambayeque</span>
+            <div class="logo-container">
+                <div class="logo-elegante">
+                    <div class="logo-reju">ReJu</div>
+                    <div class="logo-reciclando">RECICLANDO JUNTOS</div>
+                    <div class="logo-sostenibilidad">
+                        <i class="fas fa-leaf"></i>
+                        <span>Reciclaje y Facilidad</span>
+                        <i class="fas fa-recycle"></i>
                     </div>
                 </div>
             </div>
             <div class="header-actions">
-                <button id="profile-btn" title="Perfil">
-                    <i class="fas fa-user"></i>
-                </button>
-                <button id="history-btn" title="Historial">
-                    <i class="fas fa-history"></i>
-                </button>
-                <button id="impact-btn" title="Impacto Ambiental">
-                    <i class="fas fa-leaf"></i>
-                </button>
-                <button id="menu-btn" title="Menú">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <button id="profile-btn" title="Perfil"><i class="fas fa-user"></i></button>
+                <button id="notifications-btn" title="Notificaciones"><i class="fas fa-bell"></i></button>
+                <button id="menu-btn" title="Menú"><i class="fas fa-bars"></i></button>
             </div>
+        </div>
+        <div class="location-section" style="margin-top:10px;">
+            <i class="fas fa-map-marker-alt"></i>
+            <span id="current-location">Ferreñafe, Lambayeque</span>
         </div>
     </header>
 
-    <!-- Contenido Principal -->
-    <main>
-        <!-- Sección 1: Reciclajes por tipo -->
-        <section class="section">
-            <h2 class="section-title">
-                <i class="fas fa-recycle"></i>
-                ¿Qué quieres reciclar hoy?
-            </h2>
-            <div class="materials-grid">
-                <div class="material-card" data-material="plastico">
-                    <div class="material-icon">🧴</div>
-                    <div class="material-name">Plástico</div>
-                </div>
-                <div class="material-card" data-material="papel">
-                    <div class="material-icon">📦</div>
-                    <div class="material-name">Papel / Cartón</div>
-                </div>
-                <div class="material-card" data-material="vidrio">
-                    <div class="material-icon">🍾</div>
-                    <div class="material-name">Vidrio</div>
-                </div>
-                <div class="material-card" data-material="metal">
-                    <div class="material-icon">🔩</div>
-                    <div class="material-name">Metales</div>
-                </div>
-                <div class="material-card" data-material="electronicos">
-                    <div class="material-icon">🔋</div>
-                    <div class="material-name">Electrónicos</div>
-                </div>
-                <div class="material-card" data-material="organico">
-                    <div class="material-icon">🥬</div>
-                    <div class="material-name">Orgánico</div>
-                </div>
-            </div>
-        </section>
+    <!-- Dashboard que cambia según el rol -->
+    <div id="dashboard-container"></div>
 
-        <!-- Sección 2: Solicitud de recojo -->
-        <section class="section">
-            <h2 class="section-title">
-                <i class="fas fa-truck-loading"></i>
-                Solicitudes de recojo
-            </h2>
-            <div class="pickup-requests">
-                <div class="pickup-card">
-                    <div class="pickup-header">
-                        <div class="pickup-icon">🧴</div>
-                        <div class="pickup-title">Recojo de botellas plásticas</div>
-                    </div>
-                    <div class="pickup-details">
-                        <div class="detail-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>En tu domicilio</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-money-bill-wave"></i>
-                            <span>Pago estimado: <span class="price-range">S/ 0.30 – S/ 0.50</span></span>
-                        </div>
-                    </div>
-                    <button class="request-btn">
-                        <i class="fas fa-calendar-check"></i>
-                        Solicitar recojo
-                    </button>
-                </div>
-                
-                <div class="pickup-card">
-                    <div class="pickup-header">
-                        <div class="pickup-icon">📦</div>
-                        <div class="pickup-title">Recojo de cartón</div>
-                    </div>
-                    <div class="pickup-details">
-                        <div class="detail-item">
-                            <i class="fas fa-handshake"></i>
-                            <span>Coordinado con reciclador cercano</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-gift"></i>
-                            <span>Pago / puntos ecológicos</span>
-                        </div>
-                    </div>
-                    <button class="request-btn">
-                        <i class="fas fa-calendar-check"></i>
-                        Solicitar recojo
-                    </button>
-                </div>
-            </div>
-        </section>
+    <!-- Contenido Principal que cambia según el rol -->
+    <main id="main-content"></main>
 
-        <!-- Sección 3: Recicladores disponibles -->
-        <section class="section">
-            <h2 class="section-title">
-                <i class="fas fa-users"></i>
-                Recicladores disponibles
-            </h2>
-            <div class="recyclers-list">
-                <div class="recycler-card">
-                    <div class="recycler-header">
-                        <div class="recycler-avatar">ML</div>
-                        <div class="recycler-info">
-                            <div class="recycler-name">María López</div>
-                            <div class="recycler-distance">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>1.2 km de distancia</span>
-                            </div>
-                        </div>
-                        <div class="recycler-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.8</span>
-                        </div>
-                    </div>
-                    
-                    <div class="recycler-details">
-                        <div class="recycler-tag">
-                            <i class="fas fa-recycle"></i>
-                            <span>Plástico</span>
-                        </div>
-                        <div class="recycler-tag">
-                            <i class="fas fa-recycle"></i>
-                            <span>Vidrio</span>
-                        </div>
-                        <div class="recycler-tag">
-                            <i class="fas fa-recycle"></i>
-                            <span>Metales</span>
-                        </div>
-                    </div>
-                    
-                    <div class="arrival-time">
-                        <i class="fas fa-clock"></i>
-                        <span>Tiempo estimado de llegada: 25 min</span>
-                    </div>
-                    
-                    <button class="coordinate-btn">
-                        <i class="fas fa-handshake"></i>
-                        Coordinar recojo
-                    </button>
-                </div>
-                
-                <div class="recycler-card">
-                    <div class="recycler-header">
-                        <div class="recycler-avatar">CR</div>
-                        <div class="recycler-info">
-                            <div class="recycler-name">Carlos Ramírez</div>
-                            <div class="recycler-distance">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>0.8 km de distancia</span>
-                            </div>
-                        </div>
-                        <div class="recycler-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.9</span>
-                        </div>
-                    </div>
-                    
-                    <div class="recycler-details">
-                        <div class="recycler-tag">
-                            <i class="fas fa-recycle"></i>
-                            <span>Papel/Cartón</span>
-                        </div>
-                        <div class="recycler-tag">
-                            <i class="fas fa-recycle"></i>
-                            <span>Electrónicos</span>
-                        </div>
-                    </div>
-                    
-                    <div class="arrival-time">
-                        <i class="fas fa-clock"></i>
-                        <span>Tiempo estimado de llegada: 15 min</span>
-                    </div>
-                    
-                    <button class="coordinate-btn">
-                        <i class="fas fa-handshake"></i>
-                        Coordinar recojo
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sección 4: Beneficios del usuario -->
-        <section class="section">
-            <h2 class="section-title">
-                <i class="fas fa-award"></i>
-                Tus beneficios
-            </h2>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">💵</div>
-                    <div class="benefit-value" id="income-total">S/ 245.50</div>
-                    <div class="benefit-label">Ingreso acumulado</div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">🌱</div>
-                    <div class="benefit-value" id="kilos-recycled">156.5 kg</div>
-                    <div class="benefit-label">Kilos reciclados</div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">🌍</div>
-                    <div class="benefit-value" id="co2-reduced">312 kg</div>
-                    <div class="benefit-label">CO₂ reducido</div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">⭐</div>
-                    <div class="benefit-value" id="eco-points">1,245</div>
-                    <div class="benefit-label">Puntos ecológicos</div>
-                </div>
-            </div>
-            
-            <div class="rewards-section">
-                <div class="rewards-title">
-                    <i class="fas fa-gift"></i>
-                    Canjea tus puntos por:
-                </div>
-                <div class="rewards-list">
-                    <div class="reward-tag">
-                        <i class="fas fa-tag"></i>
-                        Descuentos
-                    </div>
-                    <div class="reward-tag">
-                        <i class="fas fa-shopping-bag"></i>
-                        Productos sostenibles
-                    </div>
-                    <div class="reward-tag">
-                        <i class="fas fa-medal"></i>
-                        Reconocimientos
-                    </div>
-                    <div class="reward-tag">
-                        <i class="fas fa-tree"></i>
-                        Árboles plantados
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sección 5: Impacto ambiental -->
-        <section class="section">
-            <h2 class="section-title">
-                <i class="fas fa-chart-line"></i>
-                Impacto ambiental
-            </h2>
-            
-            <div class="impact-stats">
-                <div class="impact-card">
-                    <div class="impact-value" id="month-kilos">45.2 kg</div>
-                    <div class="impact-label">Reciclados este mes</div>
-                </div>
-                
-                <div class="impact-card">
-                    <div class="impact-value" id="pickups-count">12</div>
-                    <div class="impact-label">Recojos realizados</div>
-                </div>
-                
-                <div class="impact-card">
-                    <div class="impact-value" id="circular-economy">S/ 89.30</div>
-                    <div class="impact-label">Aporte a economía circular</div>
-                </div>
-                
-                <div class="impact-card">
-                    <div class="impact-value" id="community-rank">#3</div>
-                    <div class="impact-label">Ranking comunitario</div>
-                </div>
-            </div>
-            
-            <div class="community-ranking">
-                <div class="ranking-title">
-                    <i class="fas fa-trophy"></i>
-                    Top recicladores de la semana
-                </div>
-                
-                <div class="ranking-item">
-                    <div class="ranking-position">1</div>
-                    <div class="ranking-name">Ana Martínez</div>
-                    <div class="ranking-points">245 pts</div>
-                </div>
-                
-                <div class="ranking-item">
-                    <div class="ranking-position">2</div>
-                    <div class="ranking-name">Roberto Silva</div>
-                    <div class="ranking-points">198 pts</div>
-                </div>
-                
-                <div class="ranking-item">
-                    <div class="ranking-position">3</div>
-                    <div class="ranking-name">Tú</div>
-                    <div class="ranking-points">156 pts</div>
-                </div>
-                
-                <div class="ranking-item">
-                    <div class="ranking-position">4</div>
-                    <div class="ranking-name">Lucía Fernández</div>
-                    <div class="ranking-points">132 pts</div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Modal para selección de material -->
-    <div class="modal" id="material-modal">
+    <!-- Modal para selección de tipo de cuenta -->
+    <div class="modal" id="account-type-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="modal-icon" id="modal-material-icon">🧴</div>
-                <div class="modal-title" id="modal-material-title">Reciclaje de Plástico</div>
+                <i class="fas fa-user-circle"></i>
+                <div class="modal-title">Selecciona tipo de cuenta</div>
             </div>
             <div class="modal-body">
-                <form id="pickup-form">
+                <p style="margin-bottom:25px; color: var(--text-light);">¿Qué tipo de cuenta deseas usar?</p>
+                <div style="display:flex; gap:15px;">
+                    <button id="select-usuario" style="flex:1; padding:18px; background:linear-gradient(135deg, #2E7D32, #1B5E20); color:white; border:none; border-radius:15px; cursor:pointer; font-weight:600; transition:transform 0.3s;">
+                        <i class="fas fa-user" style="font-size:1.8rem; display:block; margin-bottom:8px;"></i>
+                        Usuario
+                    </button>
+                    <button id="select-reciclador" style="flex:1; padding:18px; background:linear-gradient(135deg, #2196F3, #1976D2); color:white; border:none; border-radius:15px; cursor:pointer; font-weight:600; transition:transform 0.3s;">
+                        <i class="fas fa-recycle" style="font-size:1.8rem; display:block; margin-bottom:8px;"></i>
+                        Reciclador
+                    </button>
+                </div>
+                <button class="cancel-btn" id="close-account-modal" style="margin-top:20px; width:100%;">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de registro para reciclador -->
+    <div class="modal" id="recycler-register-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-recycle"></i>
+                <div class="modal-title">Registro de Reciclador</div>
+            </div>
+            <div class="modal-body">
+                <form id="recycler-register-form">
                     <div class="form-group">
-                        <label for="material-quantity">Cantidad aproximada (kg)</label>
-                        <div class="quantity-input">
-                            <button type="button" class="quantity-btn" id="decrease-btn">-</button>
-                            <div class="quantity-value" id="quantity-value">5</div>
-                            <button type="button" class="quantity-btn" id="increase-btn">+</button>
+                        <label>Nombre completo</label>
+                        <input type="text" id="recycler-name" placeholder="Ej: Juan Pérez" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>DNI</label>
+                        <input type="text" id="recycler-dni" maxlength="8" placeholder="8 dígitos" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="tel" id="recycler-phone" placeholder="Ej: 988888888" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Materiales que recoges</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item"><input type="checkbox" value="Plástico" checked> Plástico</div>
+                            <div class="checkbox-item"><input type="checkbox" value="Papel/Cartón" checked> Papel/Cartón</div>
+                            <div class="checkbox-item"><input type="checkbox" value="Vidrio"> Vidrio</div>
+                            <div class="checkbox-item"><input type="checkbox" value="Metales"> Metales</div>
+                            <div class="checkbox-item"><input type="checkbox" value="Electrónicos"> Electrónicos</div>
+                            <div class="checkbox-item"><input type="checkbox" value="Orgánico"> Orgánico</div>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="material-photo">Foto del material</label>
-                        <div class="photo-upload" id="photo-upload">
-                            <i class="fas fa-camera"></i>
-                            <p>Toca para tomar o subir una foto</p>
-                        </div>
-                        <input type="file" id="material-photo" accept="image/*" style="display: none;">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="pickup-address">Dirección de recojo</label>
-                        <input type="text" id="pickup-address" value="Ferreñafe - Alfonso Ugarte 245" readonly>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="pickup-time">Horario preferido</label>
-                        <select id="pickup-time">
-                            <option value="morning">Mañana (8:00 - 12:00)</option>
-                            <option value="afternoon" selected>Tarde (14:00 - 18:00)</option>
-                            <option value="evening">Noche (18:00 - 20:00)</option>
+                        <label>Zona de trabajo</label>
+                        <select id="recycler-zone">
+                            <option value="Ferreñafe">Ferreñafe</option>
+                            <option value="Chiclayo">Chiclayo</option>
+                            <option value="Lambayeque">Lambayeque</option>
+                            <option value="Pueblo Nuevo">Pueblo Nuevo</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="special-instructions">Instrucciones especiales (opcional)</label>
-                        <textarea id="special-instructions" rows="3" placeholder="Ej: Material en el patio trasero, tocar timbre..."></textarea>
+                        <label>Foto de perfil</label>
+                        <div class="photo-upload" id="recycler-photo-upload">
+                            <i class="fas fa-camera"></i>
+                            <p>Toca para subir una foto</p>
+                        </div>
+                        <input type="file" id="recycler-photo" accept="image/*" style="display: none;">
                     </div>
                     
                     <div class="action-buttons">
-                        <button type="button" class="cancel-btn" id="cancel-pickup">
-                            <i class="fas fa-times"></i>
-                            Cancelar
-                        </button>
-                        <button type="submit" class="confirm-btn">
-                            <i class="fas fa-check"></i>
-                            Confirmar solicitud
-                        </button>
+                        <button type="button" class="cancel-btn" id="cancel-recycler-register">Cancelar</button>
+                        <button type="submit" class="confirm-btn">Registrarme</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para solicitar recojo -->
+    <div class="modal" id="pickup-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-recycle"></i>
+                <div class="modal-title">Solicitar recojo</div>
+            </div>
+            <div class="modal-body">
+                <form id="pickup-form">
+                    <div class="form-group">
+                        <label>Tipo de material</label>
+                        <select id="material-type">
+                            <option value="Plástico">🧴 Plástico</option>
+                            <option value="Papel/Cartón">📦 Papel/Cartón</option>
+                            <option value="Vidrio">🍾 Vidrio</option>
+                            <option value="Metales">🔩 Metales</option>
+                            <option value="Electrónicos">🔋 Electrónicos</option>
+                            <option value="Orgánico">🥬 Orgánico</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Cantidad (kg)</label>
+                        <div class="quantity-input" style="display:flex; gap:10px;">
+                            <button type="button" class="quantity-btn" id="decrease-btn" style="width:45px; height:45px; border-radius:12px; border:2px solid var(--gold); background:white; color:var(--gold); font-size:1.2rem; cursor:pointer;">-</button>
+                            <div class="quantity-value" id="quantity-value" style="flex:1; text-align:center; font-size:1.3rem; font-weight:600; color:var(--primary-dark);">5</div>
+                            <button type="button" class="quantity-btn" id="increase-btn" style="width:45px; height:45px; border-radius:12px; border:2px solid var(--gold); background:white; color:var(--gold); font-size:1.2rem; cursor:pointer;">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Dirección</label>
+                        <input type="text" id="pickup-address" value="Av. Principal 123 - Ferreñafe">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Horario preferido</label>
+                        <select id="pickup-time">
+                            <option value="Mañana">Mañana (8:00 - 12:00)</option>
+                            <option value="Tarde" selected>Tarde (14:00 - 18:00)</option>
+                            <option value="Noche">Noche (18:00 - 20:00)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button type="button" class="cancel-btn" id="cancel-pickup">Cancelar</button>
+                        <button type="submit" class="confirm-btn">Solicitar</button>
                     </div>
                 </form>
             </div>
@@ -1076,370 +943,893 @@
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
-        <a href="#" class="nav-item active">
+        <a href="#" class="nav-item active" id="nav-home">
             <div class="nav-icon">🏠</div>
             <div class="nav-label">Inicio</div>
         </a>
-        <a href="#" class="nav-item" id="nav-recycle">
-            <div class="nav-icon">♻️</div>
-            <div class="nav-label">Reciclar</div>
-        </a>
-        <a href="#" class="nav-item" id="nav-pickups">
+        <a href="#" class="nav-item" id="nav-requests">
             <div class="nav-icon">📋</div>
-            <div class="nav-label">Mis recojos</div>
+            <div class="nav-label">Solicitudes</div>
         </a>
-        <a href="#" class="nav-item" id="nav-profile-mobile">
+        <a href="#" class="nav-item" id="nav-history">
+            <div class="nav-icon">📅</div>
+            <div class="nav-label">Historial</div>
+        </a>
+        <a href="#" class="nav-item" id="nav-profile">
             <div class="nav-icon">👤</div>
             <div class="nav-label">Perfil</div>
         </a>
-        <a href="#" class="nav-item" id="nav-education">
-            <div class="nav-icon">📚</div>
-            <div class="nav-label">Educación</div>
-        </a>
     </nav>
 
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
     <script>
-        // Variables globales
-        let currentQuantity = 5;
-        let selectedMaterial = null;
-        
-        // Datos de materiales
-        const materials = {
-            plastico: { icon: "🧴", name: "Plástico", price: "S/ 0.30 – S/ 0.50" },
-            papel: { icon: "📦", name: "Papel / Cartón", price: "S/ 0.20 – S/ 0.40" },
-            vidrio: { icon: "🍾", name: "Vidrio", price: "S/ 0.15 – S/ 0.30" },
-            metal: { icon: "🔩", name: "Metales", price: "S/ 0.50 – S/ 1.20" },
-            electronicos: { icon: "🔋", name: "Electrónicos", price: "Consultar precio" },
-            organico: { icon: "🥬", name: "Orgánico", price: "Puntos ecológicos" }
+        // ==================== BASE DE DATOS SIMULADA ====================
+        let DB = {
+            usuarios: [
+                { id: 1, nombre: "Usuario Ejemplo", telefono: "999999999", tipo: "usuario" }
+            ],
+            recicladores: [
+                { 
+                    id: 1, 
+                    nombre: "María López", 
+                    dni: "12345678", 
+                    telefono: "959039640", 
+                    materiales: ["Plástico", "Vidrio", "Metales"],
+                    zona: "Ferreñafe",
+                    foto: null,
+                    calificacion: 4.8,
+                    estado: "online",
+                    disponible: true
+                },
+                { 
+                    id: 2, 
+                    nombre: "Carlos Ramírez", 
+                    dni: "950488334", 
+                    telefono: "977777777", 
+                    materiales: ["Papel/Cartón", "Electrónicos"],
+                    zona: "Ferreñafe",
+                    foto: null,
+                    calificacion: 4.9,
+                    estado: "online",
+                    disponible: true
+                }
+            ],
+            solicitudes: [
+                {
+                    id: 1,
+                    usuario_id: 1,
+                    usuario_nombre: "Usuario Ejemplo",
+                    material: "Plástico",
+                    cantidad: "5 kg",
+                    direccion: "Av. Principal 123",
+                    horario: "Tarde",
+                    estado: "pendiente",
+                    fecha: "2024-03-15",
+                    reciclador_id: null
+                },
+                {
+                    id: 2,
+                    usuario_id: 1,
+                    usuario_nombre: "Usuario Ejemplo",
+                    material: "Papel/Cartón",
+                    cantidad: "8 kg",
+                    direccion: "Av. Principal 123",
+                    horario: "Mañana",
+                    estado: "aceptado",
+                    fecha: "2024-03-14",
+                    reciclador_id: 1,
+                    reciclador_nombre: "María López"
+                }
+            ]
+        };
+
+        // ==================== ESTADO GLOBAL ====================
+        let currentUser = {
+            id: 1,
+            nombre: "Usuario Ejemplo",
+            tipo: "usuario"
         };
         
-        // Inicialización
+        let currentRecycler = null;
+        let nextId = {
+            usuario: 2,
+            reciclador: 3,
+            solicitud: 3
+        };
+
+        // ==================== INICIALIZACIÓN ====================
         document.addEventListener('DOMContentLoaded', function() {
+            updateUI();
             setupEventListeners();
-            updateUserStats();
+            updateLocation();
         });
-        
-        // Configurar event listeners
+
+        // ==================== CONFIGURAR EVENTOS ====================
         function setupEventListeners() {
-            // Material cards
-            document.querySelectorAll('.material-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    const materialType = this.getAttribute('data-material');
-                    openMaterialModal(materialType);
-                });
+            // Header - Perfil abre selector de cuenta
+            document.getElementById('profile-btn').addEventListener('click', function() {
+                openAccountSelector();
             });
             
-            // Request buttons
-            document.querySelectorAll('.request-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    showToast('¡Solicitud enviada! Un reciclador se contactará contigo pronto.', 'success');
-                });
+            document.getElementById('notifications-btn').addEventListener('click', function() {
+                showToast('No tienes notificaciones nuevas', 'info');
             });
             
-            // Coordinate buttons
-            document.querySelectorAll('.coordinate-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    showToast('¡Recojo coordinado! El reciclador está en camino.', 'success');
-                });
+            document.getElementById('menu-btn').addEventListener('click', function() {
+                showToast('Menú principal', 'info');
             });
             
-            // Quantity buttons
-            document.getElementById('increase-btn').addEventListener('click', function() {
-                currentQuantity++;
-                updateQuantity();
+            // Navegación
+            document.getElementById('nav-home').addEventListener('click', function(e) {
+                e.preventDefault();
+                setActiveNav(this);
+                updateUI();
             });
             
-            document.getElementById('decrease-btn').addEventListener('click', function() {
-                if (currentQuantity > 1) {
-                    currentQuantity--;
-                    updateQuantity();
+            document.getElementById('nav-requests').addEventListener('click', function(e) {
+                e.preventDefault();
+                setActiveNav(this);
+                if (currentUser.tipo === 'usuario') {
+                    showUserRequests();
+                } else {
+                    showRecyclerRequests();
                 }
             });
             
-            // Photo upload
-            document.getElementById('photo-upload').addEventListener('click', function() {
-                document.getElementById('material-photo').click();
+            document.getElementById('nav-history').addEventListener('click', function(e) {
+                e.preventDefault();
+                setActiveNav(this);
+                showHistory();
             });
             
-            document.getElementById('material-photo').addEventListener('change', function(e) {
+            document.getElementById('nav-profile').addEventListener('click', function(e) {
+                e.preventDefault();
+                setActiveNav(this);
+                showProfile();
+            });
+            
+            // Modal de selector de cuenta
+            document.getElementById('select-usuario').addEventListener('click', function() {
+                changeUserType('usuario');
+                closeAccountSelector();
+            });
+            
+            document.getElementById('select-reciclador').addEventListener('click', function() {
+                // Si ya es reciclador, cambiar directamente
+                if (currentUser.tipo === 'reciclador') {
+                    changeUserType('reciclador');
+                    closeAccountSelector();
+                } else {
+                    // Abrir registro de reciclador
+                    closeAccountSelector();
+                    openRecyclerRegister();
+                }
+            });
+            
+            document.getElementById('close-account-modal').addEventListener('click', closeAccountSelector);
+            
+            // Modal de registro de reciclador
+            document.getElementById('cancel-recycler-register').addEventListener('click', function() {
+                document.getElementById('recycler-register-modal').style.display = 'none';
+            });
+            
+            document.getElementById('recycler-photo-upload').addEventListener('click', function() {
+                document.getElementById('recycler-photo').click();
+            });
+            
+            document.getElementById('recycler-photo').addEventListener('change', function(e) {
                 if (e.target.files.length > 0) {
-                    document.getElementById('photo-upload').innerHTML = `
+                    document.getElementById('recycler-photo-upload').innerHTML = `
                         <i class="fas fa-check-circle" style="color: #4CAF50;"></i>
                         <p>Foto cargada: ${e.target.files[0].name}</p>
                     `;
                 }
             });
             
-            // Form submission
+            document.getElementById('recycler-register-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                registerRecycler();
+            });
+            
+            // Modal de pickup
+            document.getElementById('cancel-pickup').addEventListener('click', closePickupModal);
+            document.getElementById('pickup-modal').addEventListener('click', function(e) {
+                if (e.target === this) closePickupModal();
+            });
+            
+            // Quantity buttons
+            document.getElementById('increase-btn').addEventListener('click', function() {
+                let val = parseInt(document.getElementById('quantity-value').textContent);
+                document.getElementById('quantity-value').textContent = val + 1;
+            });
+            
+            document.getElementById('decrease-btn').addEventListener('click', function() {
+                let val = parseInt(document.getElementById('quantity-value').textContent);
+                if (val > 1) document.getElementById('quantity-value').textContent = val - 1;
+            });
+            
+            // Pickup form
             document.getElementById('pickup-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 submitPickupRequest();
             });
+        }
+
+        // ==================== FUNCIONES DE CAMBIO DE CUENTA ====================
+        function openAccountSelector() {
+            document.getElementById('account-type-modal').style.display = 'flex';
+        }
+        
+        function closeAccountSelector() {
+            document.getElementById('account-type-modal').style.display = 'none';
+        }
+        
+        function openRecyclerRegister() {
+            document.getElementById('recycler-register-modal').style.display = 'flex';
+        }
+        
+        function registerRecycler() {
+            const nombre = document.getElementById('recycler-name').value;
+            const dni = document.getElementById('recycler-dni').value;
+            const telefono = document.getElementById('recycler-phone').value;
             
-            // Cancel button
-            document.getElementById('cancel-pickup').addEventListener('click', function() {
-                closeMaterialModal();
+            // Validar
+            if (!nombre || !dni || !telefono) {
+                showToast('Completa todos los campos', 'warning');
+                return;
+            }
+            
+            if (dni.length !== 8) {
+                showToast('DNI debe tener 8 dígitos', 'warning');
+                return;
+            }
+            
+            // Obtener materiales seleccionados
+            const materiales = [];
+            document.querySelectorAll('#recycler-register-form input[type="checkbox"]:checked').forEach(cb => {
+                materiales.push(cb.value);
             });
             
-            // Modal close on outside click
-            document.getElementById('material-modal').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    closeMaterialModal();
+            if (materiales.length === 0) {
+                showToast('Selecciona al menos un material', 'warning');
+                return;
+            }
+            
+            const zona = document.getElementById('recycler-zone').value;
+            
+            // Crear nuevo reciclador
+            const newRecycler = {
+                id: nextId.reciclador++,
+                nombre: nombre,
+                dni: dni,
+                telefono: telefono,
+                materiales: materiales,
+                zona: zona,
+                foto: null,
+                calificacion: 5.0,
+                estado: "online",
+                disponible: true
+            };
+            
+            DB.recicladores.push(newRecycler);
+            
+            // Crear usuario asociado
+            const newUser = {
+                id: nextId.usuario++,
+                nombre: nombre,
+                telefono: telefono,
+                tipo: "reciclador"
+            };
+            
+            DB.usuarios.push(newUser);
+            
+            // Cambiar a cuenta de reciclador
+            currentUser = {
+                id: newUser.id,
+                nombre: nombre,
+                tipo: "reciclador"
+            };
+            
+            currentRecycler = newRecycler;
+            
+            showToast('¡Registro exitoso! Bienvenido como reciclador', 'success');
+            document.getElementById('recycler-register-modal').style.display = 'none';
+            updateUI();
+        }
+        
+        function changeUserType(tipo) {
+            if (tipo === 'usuario') {
+                // Buscar o crear usuario por defecto
+                let user = DB.usuarios.find(u => u.tipo === 'usuario');
+                if (!user) {
+                    user = {
+                        id: nextId.usuario++,
+                        nombre: "Usuario Ejemplo",
+                        telefono: "999999999",
+                        tipo: "usuario"
+                    };
+                    DB.usuarios.push(user);
                 }
+                currentUser = {
+                    id: user.id,
+                    nombre: user.nombre,
+                    tipo: "usuario"
+                };
+                currentRecycler = null;
+                showToast('Ahora eres Usuario', 'success');
+            } else {
+                // Si hay recicladores registrados, tomar el primero
+                if (DB.recicladores.length > 0) {
+                    const recycler = DB.recicladores[0];
+                    currentUser = {
+                        id: recycler.id,
+                        nombre: recycler.nombre,
+                        tipo: "reciclador"
+                    };
+                    currentRecycler = recycler;
+                    showToast('Ahora eres Reciclador', 'success');
+                } else {
+                    showToast('No hay recicladores registrados', 'warning');
+                    return;
+                }
+            }
+            updateUI();
+        }
+
+        // ==================== ACTUALIZAR UI ====================
+        function updateUI() {
+            updateDashboard();
+            updateMainContent();
+        }
+
+        function updateDashboard() {
+            const dashboard = document.getElementById('dashboard-container');
+            
+            if (currentUser.tipo === 'usuario') {
+                const userSolicitudes = DB.solicitudes.filter(s => s.usuario_id === currentUser.id);
+                const totalKilos = userSolicitudes.reduce((acc, s) => acc + parseInt(s.cantidad), 0);
+                const puntos = totalKilos * 10;
+                
+                dashboard.innerHTML = `
+                    <div class="dashboard-header">
+                        <div class="welcome-message">
+                            <div class="user-avatar">👤</div>
+                            <div class="user-info">
+                                <h3>${currentUser.nombre}</h3>
+                                <p><i class="fas fa-map-marker-alt" style="color: var(--gold);"></i> Ferreñafe, Lambayeque</p>
+                                <p><i class="fas fa-tag" style="color: var(--gold);"></i> Usuario</p>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-value">${totalKilos} kg</div>
+                                <div class="stat-label">Reciclados</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">${puntos} pts</div>
+                                <div class="stat-label">Puntos</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">${userSolicitudes.length}</div>
+                                <div class="stat-label">Solicitudes</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">${userSolicitudes.filter(s => s.estado === 'completado').length}</div>
+                                <div class="stat-label">Completados</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                const recycler = currentRecycler || DB.recicladores.find(r => r.id === currentUser.id);
+                if (!recycler) return;
+                
+                const misSolicitudes = DB.solicitudes.filter(s => s.reciclador_id === recycler.id);
+                const totalKilos = misSolicitudes.reduce((acc, s) => acc + parseInt(s.cantidad), 0);
+                
+                dashboard.innerHTML = `
+                    <div class="dashboard-header">
+                        <div class="welcome-message">
+                            <div class="user-avatar">♻️</div>
+                            <div class="user-info">
+                                <h3>${recycler.nombre}</h3>
+                                <p><i class="fas fa-star" style="color: var(--gold);"></i> ${recycler.calificacion} · ${recycler.materiales.join(', ')}</p>
+                                <p><i class="fas fa-map-marker-alt" style="color: var(--gold);"></i> ${recycler.zona}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="status-toggle">
+                            <span>Estado:</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="availability-toggle" ${recycler.disponible ? 'checked' : ''}>
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="status-text ${recycler.disponible ? '' : 'disabled'}" id="status-text">
+                                ${recycler.disponible ? 'Disponible' : 'No disponible'}
+                            </span>
+                        </div>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-value">${totalKilos} kg</div>
+                                <div class="stat-label">Recolectados</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">S/ ${(totalKilos * 0.35).toFixed(2)}</div>
+                                <div class="stat-label">Ganado</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">${misSolicitudes.length}</div>
+                                <div class="stat-label">Recojos</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">${recycler.calificacion} ★</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Evento del toggle
+                setTimeout(() => {
+                    const toggle = document.getElementById('availability-toggle');
+                    if (toggle) {
+                        toggle.addEventListener('change', function() {
+                            if (currentRecycler) {
+                                currentRecycler.disponible = this.checked;
+                                showToast(`Ahora estás ${currentRecycler.disponible ? 'disponible' : 'no disponible'}`, 
+                                         currentRecycler.disponible ? 'success' : 'warning');
+                                updateUI();
+                            }
+                        });
+                    }
+                }, 100);
+            }
+        }
+
+        function updateMainContent() {
+            const main = document.getElementById('main-content');
+            
+            if (currentUser.tipo === 'usuario') {
+                main.innerHTML = getUserContent();
+                attachUserEvents();
+            } else {
+                main.innerHTML = getRecyclerContent();
+                attachRecyclerEvents();
+            }
+        }
+
+        function getUserContent() {
+            const pendientes = DB.solicitudes.filter(s => s.usuario_id === currentUser.id && s.estado !== 'completado');
+            const completadas = DB.solicitudes.filter(s => s.usuario_id === currentUser.id && s.estado === 'completado');
+            
+            const pendientesHTML = pendientes.map(s => `
+                <div class="request-card">
+                    <div class="request-header">
+                        <div class="request-icon">${getMaterialIcon(s.material)}</div>
+                        <div class="request-title">${s.material}</div>
+                        <span class="status-badge status-${s.estado}">${s.estado}</span>
+                    </div>
+                    <div class="request-details">
+                        <div class="detail-item"><i class="fas fa-weight-hanging"></i> ${s.cantidad}</div>
+                        <div class="detail-item"><i class="fas fa-clock"></i> ${s.horario}</div>
+                        ${s.reciclador_nombre ? `<div class="detail-item"><i class="fas fa-user"></i> Reciclador: ${s.reciclador_nombre}</div>` : ''}
+                    </div>
+                </div>
+            `).join('');
+            
+            return `
+                <!-- Materiales para solicitar -->
+                <section class="section">
+                    <h2 class="section-title"><i class="fas fa-recycle"></i> ¿Qué quieres reciclar?</h2>
+                    <div class="materials-grid">
+                        <div class="material-card" data-material="Plástico"><div class="material-icon">🧴</div><div class="material-name">Plástico</div></div>
+                        <div class="material-card" data-material="Papel/Cartón"><div class="material-icon">📦</div><div class="material-name">Papel/Cartón</div></div>
+                        <div class="material-card" data-material="Vidrio"><div class="material-icon">🍾</div><div class="material-name">Vidrio</div></div>
+                        <div class="material-card" data-material="Metales"><div class="material-icon">🔩</div><div class="material-name">Metales</div></div>
+                        <div class="material-card" data-material="Electrónicos"><div class="material-icon">🔋</div><div class="material-name">Electrónicos</div></div>
+                        <div class="material-card" data-material="Orgánico"><div class="material-icon">🥬</div><div class="material-name">Orgánico</div></div>
+                    </div>
+                </section>
+
+                <!-- Solicitudes pendientes -->
+                <section class="section">
+                    <h2 class="section-title"><i class="fas fa-clock"></i> Mis solicitudes pendientes</h2>
+                    <div class="requests-list">
+                        ${pendientesHTML || '<p style="text-align:center; color:var(--text-light);">No tienes solicitudes pendientes</p>'}
+                    </div>
+                </section>
+
+                <!-- Recicladores disponibles -->
+                <section class="section">
+                    <h2 class="section-title"><i class="fas fa-users"></i> Recicladores disponibles</h2>
+                    <div class="recyclers-list">
+                        ${getAvailableRecyclersHTML()}
+                    </div>
+                </section>
+            `;
+        }
+
+        function getAvailableRecyclersHTML() {
+            const disponibles = DB.recicladores.filter(r => r.disponible);
+            return disponibles.map(r => `
+                <div class="recycler-card">
+                    <div class="recycler-header">
+                        <div class="recycler-avatar" style="background:linear-gradient(135deg, var(--accent), #1976D2); width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:1.2rem;">${r.nombre.charAt(0)}</div>
+                        <div>
+                            <div style="font-weight:600;">${r.nombre}</div>
+                            <div style="font-size:0.8rem;"><i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> ${r.zona}</div>
+                        </div>
+                        <div><i class="fas fa-star" style="color:#FFC107;"></i> ${r.calificacion}</div>
+                    </div>
+                    <div style="display:flex; gap:5px; margin:10px 0; flex-wrap:wrap;">
+                        ${r.materiales.map(m => `<span style="background:#e3f2fd; padding:5px 12px; border-radius:20px; font-size:0.75rem; font-weight:500;">${m}</span>`).join('')}
+                    </div>
+                    <button class="accept-btn coordinate-btn" style="background:linear-gradient(135deg, var(--accent), #1976D2);" data-recycler-id="${r.id}">
+                        <i class="fas fa-handshake"></i> Coordinar directo
+                    </button>
+                </div>
+            `).join('') || '<p style="text-align:center; color:var(--text-light);">No hay recicladores disponibles</p>';
+        }
+
+        function getRecyclerContent() {
+            const recycler = currentRecycler || DB.recicladores.find(r => r.id === currentUser.id);
+            if (!recycler) return '<p style="text-align:center; padding:40px;">Cargando...</p>';
+            
+            // Solicitudes cercanas (pendientes y no asignadas)
+            const cercanas = DB.solicitudes.filter(s => s.estado === 'pendiente');
+            
+            // Mis solicitudes aceptadas
+            const misAceptadas = DB.solicitudes.filter(s => s.reciclador_id === recycler.id && s.estado !== 'completado');
+            
+            const cercanasHTML = cercanas.map(s => `
+                <div class="request-card">
+                    <div class="request-header">
+                        <div class="request-icon">${getMaterialIcon(s.material)}</div>
+                        <div class="request-title">${s.material}</div>
+                        <div class="request-distance"><i class="fas fa-map-marker-alt"></i> ${s.direccion.split(' - ')[1] || '1.2 km'}</div>
+                    </div>
+                    <div class="request-details">
+                        <div class="detail-item"><i class="fas fa-user"></i> ${s.usuario_nombre}</div>
+                        <div class="detail-item"><i class="fas fa-weight-hanging"></i> ${s.cantidad}</div>
+                        <div class="detail-item"><i class="fas fa-clock"></i> ${s.horario}</div>
+                    </div>
+                    <button class="accept-btn" onclick="acceptSolicitud(${s.id})" ${!recycler.disponible ? 'disabled' : ''}>
+                        <i class="fas fa-check-circle"></i> Aceptar recojo
+                    </button>
+                </div>
+            `).join('');
+            
+            const aceptadasHTML = misAceptadas.map(s => `
+                <div class="request-card">
+                    <div class="request-header">
+                        <div class="request-icon">${getMaterialIcon(s.material)}</div>
+                        <div class="request-title">${s.material}</div>
+                        <span class="status-badge status-${s.estado}">${s.estado}</span>
+                    </div>
+                    <div class="request-details">
+                        <div class="detail-item"><i class="fas fa-user"></i> ${s.usuario_nombre}</div>
+                        <div class="detail-item"><i class="fas fa-weight-hanging"></i> ${s.cantidad}</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            return `
+                <section class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Solicitudes cercanas (${cercanas.length})
+                        ${!recycler.disponible ? '<span style="color:#D32F2F; font-size:0.8rem; margin-left:10px;">(Activa disponible para aceptar)</span>' : ''}
+                    </h2>
+                    <div class="requests-list">
+                        ${cercanasHTML || '<p style="text-align:center; color:var(--text-light);">No hay solicitudes cercanas</p>'}
+                    </div>
+                </section>
+
+                ${aceptadasHTML ? `
+                <section class="section">
+                    <h2 class="section-title"><i class="fas fa-check-circle"></i> Mis recojos asignados</h2>
+                    <div class="requests-list">
+                        ${aceptadasHTML}
+                    </div>
+                </section>
+                ` : ''}
+            `;
+        }
+
+        // ==================== FUNCIONES DE USUARIO ====================
+        function attachUserEvents() {
+            document.querySelectorAll('.material-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const material = this.getAttribute('data-material');
+                    document.getElementById('material-type').value = material;
+                    openPickupModal();
+                });
             });
             
-            // Header buttons
-            document.getElementById('profile-btn').addEventListener('click', function() {
-                showToast('Perfil - Próximamente', 'info');
-            });
-            
-            document.getElementById('history-btn').addEventListener('click', function() {
-                showToast('Historial - Próximamente', 'info');
-            });
-            
-            document.getElementById('impact-btn').addEventListener('click', function() {
-                showToast('Impacto Ambiental - Próximamente', 'info');
-            });
-            
-            document.getElementById('menu-btn').addEventListener('click', function() {
-                showToast('Menú - Próximamente', 'info');
-            });
-            
-            // Bottom nav
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const target = this.querySelector('.nav-label').textContent;
-                    switch(target) {
-                        case 'Inicio':
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                            break;
-                        case 'Reciclar':
-                            openMaterialModal('plastico');
-                            break;
-                        default:
-                            showToast(`${target} - Próximamente`, 'info');
+            document.querySelectorAll('.coordinate-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const recyclerId = this.getAttribute('data-recycler-id');
+                    const recycler = DB.recicladores.find(r => r.id == recyclerId);
+                    if (recycler) {
+                        showToast(`Coordinando con ${recycler.nombre}...`, 'info');
+                        // Simular coordinación directa
+                        setTimeout(() => {
+                            showToast(`${recycler.nombre} ha sido notificado`, 'success');
+                        }, 1000);
                     }
                 });
             });
         }
-        
-        // Abrir modal de material
-        function openMaterialModal(materialType) {
-            selectedMaterial = materialType;
-            const material = materials[materialType];
-            
-            document.getElementById('modal-material-icon').textContent = material.icon;
-            document.getElementById('modal-material-title').textContent = `Reciclaje de ${material.name}`;
-            
-            // Reset form
-            currentQuantity = 5;
-            updateQuantity();
-            document.getElementById('photo-upload').innerHTML = `
-                <i class="fas fa-camera"></i>
-                <p>Toca para tomar o subir una foto</p>
-            `;
-            document.getElementById('material-photo').value = '';
-            document.getElementById('special-instructions').value = '';
-            
-            document.getElementById('material-modal').style.display = 'flex';
+
+        function attachRecyclerEvents() {
+            // Los eventos de aceptar se manejan con onclick global
         }
-        
-        // Cerrar modal
-        function closeMaterialModal() {
-            document.getElementById('material-modal').style.display = 'none';
+
+        function openPickupModal() {
+            document.getElementById('pickup-modal').style.display = 'flex';
         }
-        
-        // Actualizar cantidad
-        function updateQuantity() {
-            document.getElementById('quantity-value').textContent = currentQuantity;
+
+        function closePickupModal() {
+            document.getElementById('pickup-modal').style.display = 'none';
         }
-        
-        // Enviar solicitud de recojo
+
         function submitPickupRequest() {
-            const material = materials[selectedMaterial];
-            const quantity = currentQuantity;
-            const time = document.getElementById('pickup-time').value;
-            const instructions = document.getElementById('special-instructions').value;
+            const material = document.getElementById('material-type').value;
+            const cantidad = document.getElementById('quantity-value').textContent + ' kg';
+            const direccion = document.getElementById('pickup-address').value;
+            const horario = document.getElementById('pickup-time').value;
             
-            // Simular envío de solicitud
-            showToast(`¡Solicitud enviada! Recojo de ${quantity}kg de ${material.name} programado.`, 'success');
-            
-            // Actualizar estadísticas
-            updateStatsAfterPickup(quantity);
-            
-            // Cerrar modal
-            closeMaterialModal();
-            
-            // Mostrar confirmación detallada
-            setTimeout(() => {
-                const timeLabels = {
-                    morning: 'Mañana (8:00 - 12:00)',
-                    afternoon: 'Tarde (14:00 - 18:00)',
-                    evening: 'Noche (18:00 - 20:00)'
-                };
-                
-                alert(`✅ Solicitud confirmada\n\n📋 Detalles:\n• Material: ${material.name}\n• Cantidad: ${quantity} kg\n• Horario: ${timeLabels[time]}\n• Dirección: Ferreñafe - Alfonso Ugarte 245\n\nUn reciclador se contactará contigo para confirmar la hora exacta.`);
-            }, 500);
-        }
-        
-        // Actualizar estadísticas después de un recojo
-        function updateStatsAfterPickup(quantity) {
-            // Actualizar kilos reciclados
-            const currentKilos = parseFloat(document.getElementById('kilos-recycled').textContent.split(' ')[0]);
-            const newKilos = currentKilos + quantity;
-            document.getElementById('kilos-recycled').textContent = `${newKilos.toFixed(1)} kg`;
-            
-            // Actualizar kilos del mes
-            const monthKilos = parseFloat(document.getElementById('month-kilos').textContent.split(' ')[0]);
-            document.getElementById('month-kilos').textContent = `${(monthKilos + quantity).toFixed(1)} kg`;
-            
-            // Actualizar recojos realizados
-            const pickups = parseInt(document.getElementById('pickups-count').textContent);
-            document.getElementById('pickups-count').textContent = pickups + 1;
-            
-            // Actualizar CO2 reducido (aproximadamente 2kg CO2 por kg reciclado)
-            const currentCO2 = parseFloat(document.getElementById('co2-reduced').textContent.split(' ')[0]);
-            const newCO2 = currentCO2 + (quantity * 2);
-            document.getElementById('co2-reduced').textContent = `${newCO2.toFixed(0)} kg`;
-            
-            // Actualizar ingreso (aproximado)
-            const material = materials[selectedMaterial];
-            let incomePerKg = 0.35; // Promedio
-            if (material.price.includes('S/')) {
-                const priceRange = material.price.match(/[\d.]+/g);
-                if (priceRange) {
-                    incomePerKg = (parseFloat(priceRange[0]) + parseFloat(priceRange[1] || priceRange[0])) / 2;
-                }
-            }
-            
-            const currentIncome = parseFloat(document.getElementById('income-total').textContent.split('S/ ')[1]);
-            const newIncome = currentIncome + (incomePerKg * quantity);
-            document.getElementById('income-total').textContent = `S/ ${newIncome.toFixed(2)}`;
-            
-            // Actualizar aporte a economía circular
-            const currentCircular = parseFloat(document.getElementById('circular-economy').textContent.split('S/ ')[1]);
-            document.getElementById('circular-economy').textContent = `S/ ${(currentCircular + (incomePerKg * quantity)).toFixed(2)}`;
-            
-            // Actualizar puntos ecológicos (10 puntos por kg)
-            const currentPoints = parseInt(document.getElementById('eco-points').textContent);
-            const newPoints = currentPoints + (quantity * 10);
-            document.getElementById('eco-points').textContent = newPoints;
-        }
-        
-        // Actualizar estadísticas del usuario
-        function updateUserStats() {
-            // Simular actualización de datos
-            // En una app real, aquí se cargarían desde una API
-        }
-        
-        // Mostrar toast/notificación
-        function showToast(message, type = 'info') {
-            // Crear toast container si no existe
-            let toastContainer = document.getElementById('toast-container');
-            if (!toastContainer) {
-                toastContainer = document.createElement('div');
-                toastContainer.id = 'toast-container';
-                toastContainer.style.cssText = `
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    z-index: 9999;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-                `;
-                document.body.appendChild(toastContainer);
-            }
-            
-            const colors = {
-                'success': '#4CAF50',
-                'info': '#2196F3',
-                'warning': '#FF9800',
-                'error': '#f44336'
+            const newSolicitud = {
+                id: nextId.solicitud++,
+                usuario_id: currentUser.id,
+                usuario_nombre: currentUser.nombre,
+                material: material,
+                cantidad: cantidad,
+                direccion: direccion,
+                horario: horario,
+                estado: "pendiente",
+                fecha: new Date().toISOString().split('T')[0],
+                reciclador_id: null
             };
+            
+            DB.solicitudes.push(newSolicitud);
+            
+            showToast('✅ Solicitud enviada. Buscando reciclador...', 'success');
+            closePickupModal();
+            
+            // Simular búsqueda de reciclador
+            setTimeout(() => {
+                const recicladoresDisponibles = DB.recicladores.filter(r => r.disponible);
+                if (recicladoresDisponibles.length > 0) {
+                    // Asignar al primer reciclador disponible
+                    const reciclador = recicladoresDisponibles[0];
+                    newSolicitud.estado = "aceptado";
+                    newSolicitud.reciclador_id = reciclador.id;
+                    newSolicitud.reciclador_nombre = reciclador.nombre;
+                    
+                    showToast(`🔔 Reciclador asignado: ${reciclador.nombre}`, 'success');
+                    updateUI();
+                }
+            }, 2000);
+        }
+
+        function showUserRequests() {
+            const main = document.getElementById('main-content');
+            const solicitudes = DB.solicitudes.filter(s => s.usuario_id === currentUser.id);
+            
+            const solicitudesHTML = solicitudes.map(s => `
+                <div class="request-card">
+                    <div class="request-header">
+                        <div class="request-icon">${getMaterialIcon(s.material)}</div>
+                        <div class="request-title">${s.material}</div>
+                        <span class="status-badge status-${s.estado}">${s.estado}</span>
+                    </div>
+                    <div class="request-details">
+                        <div class="detail-item"><i class="fas fa-calendar"></i> ${s.fecha}</div>
+                        <div class="detail-item"><i class="fas fa-weight-hanging"></i> ${s.cantidad}</div>
+                        <div class="detail-item"><i class="fas fa-clock"></i> ${s.horario}</div>
+                        ${s.reciclador_nombre ? `<div class="detail-item"><i class="fas fa-user"></i> Reciclador: ${s.reciclador_nombre}</div>` : ''}
+                    </div>
+                </div>
+            `).join('');
+            
+            main.innerHTML = `
+                <section class="section">
+                    <h2 class="section-title"><i class="fas fa-list"></i> Mis solicitudes</h2>
+                    <div class="requests-list">
+                        ${solicitudesHTML || '<p style="text-align:center; color:var(--text-light);">No tienes solicitudes</p>'}
+                    </div>
+                </section>
+            `;
+        }
+
+        function showRecyclerRequests() {
+            updateMainContent(); // Ya muestra las solicitudes
+        }
+
+        function showHistory() {
+            const main = document.getElementById('main-content');
+            
+            if (currentUser.tipo === 'usuario') {
+                const completadas = DB.solicitudes.filter(s => s.usuario_id === currentUser.id && s.estado === 'completado');
+                const historyHTML = completadas.map(s => `
+                    <div class="request-card">
+                        <div class="request-header">
+                            <div class="request-icon">${getMaterialIcon(s.material)}</div>
+                            <div class="request-title">${s.material}</div>
+                            <span class="status-badge status-completado">completado</span>
+                        </div>
+                        <div class="request-details">
+                            <div class="detail-item"><i class="fas fa-calendar"></i> ${s.fecha}</div>
+                            <div class="detail-item"><i class="fas fa-weight-hanging"></i> ${s.cantidad}</div>
+                            <div class="detail-item"><i class="fas fa-user"></i> Reciclador: ${s.reciclador_nombre || 'N/A'}</div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                main.innerHTML = `
+                    <section class="section">
+                        <h2 class="section-title"><i class="fas fa-history"></i> Historial</h2>
+                        <div class="requests-list">
+                            ${historyHTML || '<p style="text-align:center; color:var(--text-light);">No hay historial</p>'}
+                        </div>
+                    </section>
+                `;
+            } else {
+                const recycler = currentRecycler || DB.recicladores.find(r => r.id === currentUser.id);
+                const completadas = DB.solicitudes.filter(s => s.reciclador_id === recycler.id && s.estado === 'completado');
+                
+                const historyHTML = completadas.map(s => `
+                    <div class="request-card">
+                        <div class="request-header">
+                            <div class="request-icon">${getMaterialIcon(s.material)}</div>
+                            <div class="request-title">${s.material}</div>
+                            <span class="status-badge status-completado">completado</span>
+                        </div>
+                        <div class="request-details">
+                            <div class="detail-item"><i class="fas fa-calendar"></i> ${s.fecha}</div>
+                            <div class="detail-item"><i class="fas fa-user"></i> ${s.usuario_nombre}</div>
+                            <div class="detail-item"><i class="fas fa-weight-hanging"></i> ${s.cantidad}</div>
+                            <div class="detail-item"><i class="fas fa-coins"></i> S/ ${(parseInt(s.cantidad) * 0.35).toFixed(2)}</div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                main.innerHTML = `
+                    <section class="section">
+                        <h2 class="section-title"><i class="fas fa-history"></i> Historial de recojos</h2>
+                        <div class="requests-list">
+                            ${historyHTML || '<p style="text-align:center; color:var(--text-light);">No hay historial</p>'}
+                        </div>
+                    </section>
+                `;
+            }
+        }
+
+        function showProfile() {
+            const main = document.getElementById('main-content');
+            
+            if (currentUser.tipo === 'usuario') {
+                main.innerHTML = `
+                    <section class="section">
+                        <h2 class="section-title"><i class="fas fa-user"></i> Mi perfil</h2>
+                        <div style="text-align:center; margin-bottom:25px;">
+                            <div style="width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg, var(--primary), var(--primary-dark)); color:white; display:flex; align-items:center; justify-content:center; font-size:2.5rem; margin:0 auto 15px; border:3px solid var(--gold);">👤</div>
+                            <h3 style="font-size:1.5rem; margin-bottom:5px;">${currentUser.nombre}</h3>
+                            <p style="color:var(--text-light);"><i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> Ferreñafe, Lambayeque</p>
+                        </div>
+                        <div style="background:#f8f9fa; padding:20px; border-radius:15px;">
+                            <div style="display:flex; justify-content:space-between; padding:8px 0;"><strong>Email:</strong> usuario@email.com</div>
+                            <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Teléfono:</strong> +51 999 999 999</div>
+                            <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Tipo:</strong> Usuario</div>
+                        </div>
+                        <button class="accept-btn" style="margin-top:20px;" onclick="openAccountSelector()">
+                            <i class="fas fa-exchange-alt"></i> Cambiar tipo de cuenta
+                        </button>
+                    </section>
+                `;
+            } else {
+                const recycler = currentRecycler || DB.recicladores.find(r => r.id === currentUser.id);
+                main.innerHTML = `
+                    <section class="section">
+                        <h2 class="section-title"><i class="fas fa-user"></i> Mi perfil</h2>
+                        <div style="text-align:center; margin-bottom:25px;">
+                            <div style="width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg, var(--accent), #1976D2); color:white; display:flex; align-items:center; justify-content:center; font-size:2.5rem; margin:0 auto 15px; border:3px solid var(--gold);">♻️</div>
+                            <h3 style="font-size:1.5rem; margin-bottom:5px;">${recycler.nombre}</h3>
+                            <p style="color:var(--text-light);"><i class="fas fa-star" style="color:#FFC107;"></i> ${recycler.calificacion} (32 reseñas)</p>
+                        </div>
+                        <div style="background:#f8f9fa; padding:20px; border-radius:15px;">
+                            <div style="display:flex; justify-content:space-between; padding:8px 0;"><strong>DNI:</strong> ${recycler.dni}</div>
+                            <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Teléfono:</strong> ${recycler.telefono}</div>
+                            <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Zona:</strong> ${recycler.zona}</div>
+                            <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Materiales:</strong> ${recycler.materiales.join(', ')}</div>
+                        </div>
+                        <button class="accept-btn" style="margin-top:20px;" onclick="openAccountSelector()">
+                            <i class="fas fa-exchange-alt"></i> Cambiar tipo de cuenta
+                        </button>
+                    </section>
+                `;
+            }
+        }
+
+        // ==================== FUNCIONES DE RECICLADOR ====================
+        window.acceptSolicitud = function(solicitudId) {
+            const recycler = currentRecycler || DB.recicladores.find(r => r.id === currentUser.id);
+            if (!recycler || !recycler.disponible) {
+                showToast('Activa tu estado "Disponible" primero', 'warning');
+                return;
+            }
+            
+            const solicitud = DB.solicitudes.find(s => s.id === solicitudId);
+            if (solicitud) {
+                solicitud.estado = "aceptado";
+                solicitud.reciclador_id = recycler.id;
+                solicitud.reciclador_nombre = recycler.nombre;
+                
+                showToast(`✅ Has aceptado el recojo`, 'success');
+                
+                // Notificar al usuario
+                showToast(`🔔 El reciclador ${recycler.nombre} aceptó tu solicitud`, 'info');
+                
+                updateUI();
+            }
+        };
+
+        // ==================== FUNCIONES COMUNES ====================
+        function getMaterialIcon(material) {
+            const icons = {
+                'Plástico': '🧴',
+                'Papel/Cartón': '📦',
+                'Vidrio': '🍾',
+                'Metales': '🔩',
+                'Electrónicos': '🔋',
+                'Orgánico': '🥬'
+            };
+            return icons[material] || '📦';
+        }
+
+        function setActiveNav(activeItem) {
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+            activeItem.classList.add('active');
+        }
+
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
             
             const icons = {
-                'success': 'fas fa-check-circle',
-                'info': 'fas fa-info-circle',
-                'warning': 'fas fa-exclamation-triangle',
-                'error': 'fas fa-exclamation-circle'
+                success: 'fas fa-check-circle',
+                info: 'fas fa-info-circle',
+                warning: 'fas fa-exclamation-triangle'
             };
             
-            const toast = document.createElement('div');
-            toast.style.cssText = `
-                background: white;
-                color: #333;
-                padding: 15px 20px;
-                border-radius: 10px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                max-width: 300px;
-                border-left: 4px solid ${colors[type] || colors.info};
-                animation: slideInRight 0.3s ease-out;
-                transform: translateX(100%);
-                opacity: 0;
-            `;
-            
-            // Crear keyframes para la animación
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideInRight {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-                @keyframes slideOutRight {
-                    from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(100%); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            setTimeout(() => {
-                toast.style.transform = 'translateX(0)';
-                toast.style.opacity = '1';
-            }, 10);
-            
             toast.innerHTML = `
-                <i class="${icons[type] || icons.info}" style="color: ${colors[type] || colors.info}; font-size: 1.2rem;"></i>
+                <i class="${icons[type]} ${type}"></i>
                 <span>${message}</span>
             `;
             
-            toastContainer.appendChild(toast);
+            container.appendChild(toast);
             
-            // Auto-remover después de 5 segundos
+            setTimeout(() => toast.classList.add('show'), 10);
+            
             setTimeout(() => {
-                toast.style.animation = 'slideOutRight 0.3s ease-out';
-                setTimeout(() => {
-                    if (toast.parentNode) {
-                        toast.parentNode.removeChild(toast);
-                    }
-                }, 300);
-            }, 5000);
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
         }
-        
-        // Simular actualización de ubicación
+
         function updateLocation() {
-            const locations = [
-                "Ferreñafe, Lambayeque",
-                "Chiclayo, Lambayeque", 
-                "Lambayeque, Lambayeque"
-            ];
-            
-            let currentIndex = 0;
+            const locations = ["Ferreñafe, Lambayeque", "Chiclayo, Lambayeque", Lambayeque"];
+            let i = 0;
             setInterval(() => {
-                currentIndex = (currentIndex + 1) % locations.length;
-                document.getElementById('current-location').textContent = locations[currentIndex];
-            }, 10000); // Cambia cada 10 segundos
+                i = (i + 1) % locations.length;
+                document.getElementById('current-location').textContent = locations[i];
+            }, 10000);
         }
-        
-        // Iniciar actualización de ubicación
-        updateLocation();
     </script>
 </body>
 </html>
