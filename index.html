@@ -766,6 +766,22 @@
         .toast i.info { color: #2196F3; }
         .toast i.warning { color: #FF9800; }
         
+        /* Link de registro */
+        .register-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        .register-link a {
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        
         /* Responsive */
         @media (max-width: 480px) {
             .materials-grid {
@@ -847,9 +863,48 @@
                         <button type="submit" class="confirm-btn">Ingresar</button>
                     </div>
                 </form>
-                <p style="text-align:center; margin-top:15px; font-size:0.8rem; color:var(--text-light);">
-                    Usuarios de prueba: SILVA/123456 (usuario), MARIA/123456, JUANA/123456, YULY/123456 (recicladores)
+                <div class="register-link">
+                    ¿No tienes cuenta? <a id="show-register">Regístrate aquí</a>
+                </div>
+                <p style="text-align:center; margin-top:10px; font-size:0.8rem; color:var(--text-light);">
+                    Usuarios: SILVA/123456, CARLOS/123456, DEMO/123, JOSE/123456<br>
+                    Recicladores: MARIA/123456, JUANA/123456, YULY/123456
                 </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Registro de Usuario -->
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-user-plus"></i>
+                <div class="modal-title">Registro de Usuario</div>
+            </div>
+            <div class="modal-body">
+                <form id="register-form">
+                    <div class="form-group">
+                        <label>Nombres y Apellidos</label>
+                        <input type="text" id="reg-nombre" placeholder="Ej: Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label>DNI</label>
+                        <input type="text" id="reg-dni" maxlength="8" placeholder="8 dígitos" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Celular</label>
+                        <input type="tel" id="reg-celular" placeholder="Ej: 902662035" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Dirección</label>
+                        <input type="text" id="reg-direccion" placeholder="Ej: Av. Principal 123, Ferreñafe" required>
+                    </div>
+                    <p style="font-size:0.85rem; color:var(--text-light);">Tu usuario se generará automáticamente (ej: JUAN) y tu contraseña será "123456".</p>
+                    <div class="action-buttons">
+                        <button type="button" class="cancel-btn" id="close-register">Cancelar</button>
+                        <button type="submit" class="confirm-btn">Registrarse</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -937,11 +992,42 @@
                 { 
                     id: 1, 
                     nombre: "Isabel Silva", 
+                    dni: "12345678",
                     telefono: "902662035", 
+                    direccion: "Ferreñafe, Lambayeque",
                     usuario: "SILVA", 
                     clave: "123456",
-                    tipo: "usuario",
-                    direccion: "Ferreñafe, Lambayeque"
+                    tipo: "usuario"
+                },
+                { 
+                    id: 4, 
+                    nombre: "Carlos Bajonero", 
+                    dni: "87654321",
+                    telefono: "929754244", 
+                    direccion: "Chiclayo, Lambayeque",
+                    usuario: "CARLOS", 
+                    clave: "123456",
+                    tipo: "usuario"
+                },
+                { 
+                    id: 5, 
+                    nombre: "DEMOSTRACION", 
+                    dni: "11223344",
+                    telefono: "950488334", 
+                    direccion: "Lambayeque, Lambayeque",
+                    usuario: "DEMO", 
+                    clave: "123",
+                    tipo: "usuario"
+                },
+                { 
+                    id: 6, 
+                    nombre: "Jose Millones", 
+                    dni: "55667788",
+                    telefono: "903230622", 
+                    direccion: "Ferreñafe, Lambayeque",
+                    usuario: "JOSE", 
+                    clave: "123456",
+                    tipo: "usuario"
                 }
             ],
             recicladores: [
@@ -1021,7 +1107,7 @@
         let currentUser = null; // { id, nombre, tipo }
         let currentRecycler = null;
         let nextId = {
-            usuario: 2,
+            usuario: 7,  // ya tenemos hasta el 6
             reciclador: 4,
             solicitud: 3
         };
@@ -1108,6 +1194,22 @@
                 e.preventDefault();
                 doLogin();
             });
+
+            // Registro modal
+            document.getElementById('show-register').addEventListener('click', function() {
+                closeLoginModal();
+                openRegisterModal();
+            });
+
+            document.getElementById('close-register').addEventListener('click', closeRegisterModal);
+            document.getElementById('register-modal').addEventListener('click', function(e) {
+                if (e.target === this) closeRegisterModal();
+            });
+
+            document.getElementById('register-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                registerUser();
+            });
             
             // Modal de pickup
             document.getElementById('cancel-pickup').addEventListener('click', closePickupModal);
@@ -1179,6 +1281,59 @@
             showToast('Usuario o contraseña incorrectos', 'warning');
         }
 
+        // ==================== FUNCIONES DE REGISTRO ====================
+        function openRegisterModal() {
+            document.getElementById('register-modal').style.display = 'flex';
+        }
+
+        function closeRegisterModal() {
+            document.getElementById('register-modal').style.display = 'none';
+        }
+
+        function registerUser() {
+            const nombre = document.getElementById('reg-nombre').value.trim();
+            const dni = document.getElementById('reg-dni').value.trim();
+            const celular = document.getElementById('reg-celular').value.trim();
+            const direccion = document.getElementById('reg-direccion').value.trim();
+
+            if (!nombre || !dni || !celular || !direccion) {
+                showToast('Todos los campos son obligatorios', 'warning');
+                return;
+            }
+            if (dni.length !== 8) {
+                showToast('DNI debe tener 8 dígitos', 'warning');
+                return;
+            }
+
+            // Generar usuario: primera palabra del nombre en mayúsculas, sin espacios
+            let usuario = nombre.split(' ')[0].toUpperCase();
+            // Verificar si ya existe, si sí, agregar un número
+            let exists = DB.usuarios.some(u => u.usuario === usuario) || DB.recicladores.some(r => r.usuario === usuario);
+            let counter = 1;
+            let baseUsuario = usuario;
+            while (exists) {
+                usuario = baseUsuario + counter;
+                exists = DB.usuarios.some(u => u.usuario === usuario) || DB.recicladores.some(r => r.usuario === usuario);
+                counter++;
+            }
+
+            const nuevoUsuario = {
+                id: nextId.usuario++,
+                nombre: nombre,
+                dni: dni,
+                telefono: celular,
+                direccion: direccion,
+                usuario: usuario,
+                clave: "123456",  // contraseña por defecto
+                tipo: "usuario"
+            };
+
+            DB.usuarios.push(nuevoUsuario);
+            showToast(`Usuario registrado. Tu usuario: ${usuario}, clave: 123456`, 'success');
+            closeRegisterModal();
+            openLoginModal(); // volver al login
+        }
+
         // ==================== ACTUALIZAR UI ====================
         function updateUI() {
             if (!currentUser) return;
@@ -1200,7 +1355,7 @@
                             <div class="user-avatar">👤</div>
                             <div class="user-info">
                                 <h3>${currentUser.nombre}</h3>
-                                <p><i class="fas fa-map-marker-alt" style="color: var(--gold);"></i> Ferreñafe, Lambayeque</p>
+                                <p><i class="fas fa-map-marker-alt" style="color: var(--gold);"></i> ${getUserDireccion(currentUser.id)}</p>
                                 <p><i class="fas fa-tag" style="color: var(--gold);"></i> Usuario</p>
                             </div>
                         </div>
@@ -1292,6 +1447,11 @@
                     }
                 }, 100);
             }
+        }
+
+        function getUserDireccion(userId) {
+            const user = DB.usuarios.find(u => u.id === userId);
+            return user ? user.direccion : 'Lambayeque';
         }
 
         function updateMainContent() {
@@ -1663,10 +1823,11 @@
                         <div style="text-align:center; margin-bottom:25px;">
                             <div style="width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg, var(--primary), var(--primary-dark)); color:white; display:flex; align-items:center; justify-content:center; font-size:2.5rem; margin:0 auto 15px; border:3px solid var(--gold);">👤</div>
                             <h3 style="font-size:1.5rem; margin-bottom:5px;">${user.nombre}</h3>
-                            <p style="color:var(--text-light);"><i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> Ferreñafe, Lambayeque</p>
+                            <p style="color:var(--text-light);"><i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> ${user.direccion}</p>
                         </div>
                         <div style="background:#f8f9fa; padding:20px; border-radius:15px;">
-                            <div style="display:flex; justify-content:space-between; padding:8px 0;"><strong>Teléfono:</strong> ${user.telefono}</div>
+                            <div style="display:flex; justify-content:space-between; padding:8px 0;"><strong>DNI:</strong> ${user.dni}</div>
+                            <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Teléfono:</strong> ${user.telefono}</div>
                             <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Usuario:</strong> ${user.usuario}</div>
                             <div style="display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e0e0e0;"><strong>Tipo:</strong> Usuario</div>
                         </div>
@@ -1797,4 +1958,3 @@
     </script>
 </body>
 </html>
-```
