@@ -767,18 +767,21 @@
         .toast i.warning { color: #FF9800; }
         
         /* Link de registro */
-        .register-link {
+        .register-links {
             text-align: center;
             margin-top: 15px;
             font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
-        .register-link a {
+        .register-links a {
             color: var(--primary);
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
         }
-        .register-link a:hover {
+        .register-links a:hover {
             text-decoration: underline;
         }
         
@@ -863,8 +866,9 @@
                         <button type="submit" class="confirm-btn">Ingresar</button>
                     </div>
                 </form>
-                <div class="register-link">
-                    ¿No tienes cuenta? <a id="show-register">Regístrate aquí</a>
+                <div class="register-links">
+                    <a id="show-register-usuario">¿Eres usuario? Regístrate aquí</a>
+                    <a id="show-register-reciclador">¿Eres reciclador? Regístrate aquí</a>
                 </div>
                 <p style="text-align:center; margin-top:10px; font-size:0.8rem; color:var(--text-light);">
                     Usuarios: SILVA/123456, CARLOS/123456, DEMO/123, JOSE/123456<br>
@@ -875,33 +879,79 @@
     </div>
 
     <!-- Modal de Registro de Usuario -->
-    <div class="modal" id="register-modal">
+    <div class="modal" id="register-usuario-modal">
         <div class="modal-content">
             <div class="modal-header">
                 <i class="fas fa-user-plus"></i>
                 <div class="modal-title">Registro de Usuario</div>
             </div>
             <div class="modal-body">
-                <form id="register-form">
+                <form id="register-usuario-form">
                     <div class="form-group">
                         <label>Nombres y Apellidos</label>
-                        <input type="text" id="reg-nombre" placeholder="Ej: Juan Pérez" required>
+                        <input type="text" id="reg-usuario-nombre" placeholder="Ej: Juan Pérez" required>
                     </div>
                     <div class="form-group">
                         <label>DNI</label>
-                        <input type="text" id="reg-dni" maxlength="8" placeholder="8 dígitos" required>
+                        <input type="text" id="reg-usuario-dni" maxlength="8" placeholder="8 dígitos" required>
                     </div>
                     <div class="form-group">
                         <label>Celular</label>
-                        <input type="tel" id="reg-celular" placeholder="Ej: 902662035" required>
+                        <input type="tel" id="reg-usuario-celular" placeholder="Ej: 902662035" required>
                     </div>
                     <div class="form-group">
                         <label>Dirección</label>
-                        <input type="text" id="reg-direccion" placeholder="Ej: Av. Principal 123, Ferreñafe" required>
+                        <input type="text" id="reg-usuario-direccion" placeholder="Ej: Av. Principal 123, Ferreñafe" required>
                     </div>
                     <p style="font-size:0.85rem; color:var(--text-light);">Tu usuario se generará automáticamente (ej: JUAN) y tu contraseña será "123456".</p>
                     <div class="action-buttons">
-                        <button type="button" class="cancel-btn" id="close-register">Cancelar</button>
+                        <button type="button" class="cancel-btn" id="close-register-usuario">Cancelar</button>
+                        <button type="submit" class="confirm-btn">Registrarse</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Registro de Reciclador -->
+    <div class="modal" id="register-reciclador-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-recycle"></i>
+                <div class="modal-title">Registro de Reciclador</div>
+            </div>
+            <div class="modal-body">
+                <form id="register-reciclador-form">
+                    <div class="form-group">
+                        <label>Nombres y Apellidos</label>
+                        <input type="text" id="reg-reciclador-nombre" placeholder="Ej: María López" required>
+                    </div>
+                    <div class="form-group">
+                        <label>DNI</label>
+                        <input type="text" id="reg-reciclador-dni" maxlength="8" placeholder="8 dígitos" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Celular</label>
+                        <input type="tel" id="reg-reciclador-celular" placeholder="Ej: 959039640" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Dirección (Zona de trabajo)</label>
+                        <input type="text" id="reg-reciclador-direccion" placeholder="Ej: Ferreñafe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Materiales que recoges (selecciona al menos uno)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item"><input type="checkbox" value="Plástico"> Plástico</div>
+                            <div class="checkbox-item"><input type="checkbox" value="Papel/Cartón"> Papel/Cartón</div>
+                            <div class="checkbox-item"><input type="checkbox" value="Vidrio"> Vidrio</div>
+                            <div class="checkbox-item"><input type="checkbox" value="Metales"> Metales</div>
+                            <div class="checkbox-item"><input type="checkbox" value="Electrónicos"> Electrónicos</div>
+                            <div class="checkbox-item"><input type="checkbox" value="Orgánico"> Orgánico</div>
+                        </div>
+                    </div>
+                    <p style="font-size:0.85rem; color:var(--text-light);">Tu usuario se generará automáticamente (ej: MARIA) y tu contraseña será "123456".</p>
+                    <div class="action-buttons">
+                        <button type="button" class="cancel-btn" id="close-register-reciclador">Cancelar</button>
                         <button type="submit" class="confirm-btn">Registrarse</button>
                     </div>
                 </form>
@@ -1036,6 +1086,7 @@
                     nombre: "María López", 
                     dni: "12345678", 
                     telefono: "959039640", 
+                    direccion: "Ferreñafe",
                     usuario: "MARIA",
                     clave: "123456",
                     materiales: ["Plástico", "Vidrio", "Metales"],
@@ -1050,6 +1101,7 @@
                     nombre: "Juana Ramírez", 
                     dni: "87654321", 
                     telefono: "902662035", 
+                    direccion: "Chiclayo",
                     usuario: "JUANA",
                     clave: "123456",
                     materiales: ["Papel/Cartón", "Electrónicos"],
@@ -1064,6 +1116,7 @@
                     nombre: "Yuly Ynoñan", 
                     dni: "11223344", 
                     telefono: "950488334", 
+                    direccion: "Lambayeque",
                     usuario: "YULY",
                     clave: "123456",
                     materiales: ["Orgánico", "Plástico"],
@@ -1107,7 +1160,7 @@
         let currentUser = null; // { id, nombre, tipo }
         let currentRecycler = null;
         let nextId = {
-            usuario: 7,  // ya tenemos hasta el 6
+            usuario: 7,
             reciclador: 4,
             solicitud: 3
         };
@@ -1195,20 +1248,36 @@
                 doLogin();
             });
 
-            // Registro modal
-            document.getElementById('show-register').addEventListener('click', function() {
+            // Registro usuario
+            document.getElementById('show-register-usuario').addEventListener('click', function() {
                 closeLoginModal();
-                openRegisterModal();
+                openRegisterUsuarioModal();
             });
 
-            document.getElementById('close-register').addEventListener('click', closeRegisterModal);
-            document.getElementById('register-modal').addEventListener('click', function(e) {
-                if (e.target === this) closeRegisterModal();
+            document.getElementById('close-register-usuario').addEventListener('click', closeRegisterUsuarioModal);
+            document.getElementById('register-usuario-modal').addEventListener('click', function(e) {
+                if (e.target === this) closeRegisterUsuarioModal();
             });
 
-            document.getElementById('register-form').addEventListener('submit', function(e) {
+            document.getElementById('register-usuario-form').addEventListener('submit', function(e) {
                 e.preventDefault();
-                registerUser();
+                registerUsuario();
+            });
+
+            // Registro reciclador
+            document.getElementById('show-register-reciclador').addEventListener('click', function() {
+                closeLoginModal();
+                openRegisterRecicladorModal();
+            });
+
+            document.getElementById('close-register-reciclador').addEventListener('click', closeRegisterRecicladorModal);
+            document.getElementById('register-reciclador-modal').addEventListener('click', function(e) {
+                if (e.target === this) closeRegisterRecicladorModal();
+            });
+
+            document.getElementById('register-reciclador-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                registerReciclador();
             });
             
             // Modal de pickup
@@ -1281,20 +1350,20 @@
             showToast('Usuario o contraseña incorrectos', 'warning');
         }
 
-        // ==================== FUNCIONES DE REGISTRO ====================
-        function openRegisterModal() {
-            document.getElementById('register-modal').style.display = 'flex';
+        // ==================== FUNCIONES DE REGISTRO DE USUARIO ====================
+        function openRegisterUsuarioModal() {
+            document.getElementById('register-usuario-modal').style.display = 'flex';
         }
 
-        function closeRegisterModal() {
-            document.getElementById('register-modal').style.display = 'none';
+        function closeRegisterUsuarioModal() {
+            document.getElementById('register-usuario-modal').style.display = 'none';
         }
 
-        function registerUser() {
-            const nombre = document.getElementById('reg-nombre').value.trim();
-            const dni = document.getElementById('reg-dni').value.trim();
-            const celular = document.getElementById('reg-celular').value.trim();
-            const direccion = document.getElementById('reg-direccion').value.trim();
+        function registerUsuario() {
+            const nombre = document.getElementById('reg-usuario-nombre').value.trim();
+            const dni = document.getElementById('reg-usuario-dni').value.trim();
+            const celular = document.getElementById('reg-usuario-celular').value.trim();
+            const direccion = document.getElementById('reg-usuario-direccion').value.trim();
 
             if (!nombre || !dni || !celular || !direccion) {
                 showToast('Todos los campos son obligatorios', 'warning');
@@ -1324,14 +1393,81 @@
                 telefono: celular,
                 direccion: direccion,
                 usuario: usuario,
-                clave: "123456",  // contraseña por defecto
+                clave: "123456",
                 tipo: "usuario"
             };
 
             DB.usuarios.push(nuevoUsuario);
             showToast(`Usuario registrado. Tu usuario: ${usuario}, clave: 123456`, 'success');
-            closeRegisterModal();
-            openLoginModal(); // volver al login
+            closeRegisterUsuarioModal();
+            openLoginModal();
+        }
+
+        // ==================== FUNCIONES DE REGISTRO DE RECICLADOR ====================
+        function openRegisterRecicladorModal() {
+            document.getElementById('register-reciclador-modal').style.display = 'flex';
+        }
+
+        function closeRegisterRecicladorModal() {
+            document.getElementById('register-reciclador-modal').style.display = 'none';
+        }
+
+        function registerReciclador() {
+            const nombre = document.getElementById('reg-reciclador-nombre').value.trim();
+            const dni = document.getElementById('reg-reciclador-dni').value.trim();
+            const celular = document.getElementById('reg-reciclador-celular').value.trim();
+            const direccion = document.getElementById('reg-reciclador-direccion').value.trim();
+
+            if (!nombre || !dni || !celular || !direccion) {
+                showToast('Todos los campos son obligatorios', 'warning');
+                return;
+            }
+            if (dni.length !== 8) {
+                showToast('DNI debe tener 8 dígitos', 'warning');
+                return;
+            }
+
+            // Obtener materiales seleccionados
+            const materiales = [];
+            document.querySelectorAll('#register-reciclador-form input[type="checkbox"]:checked').forEach(cb => {
+                materiales.push(cb.value);
+            });
+            if (materiales.length === 0) {
+                showToast('Selecciona al menos un material', 'warning');
+                return;
+            }
+
+            // Generar usuario: primera palabra del nombre en mayúsculas
+            let usuario = nombre.split(' ')[0].toUpperCase();
+            let exists = DB.recicladores.some(r => r.usuario === usuario) || DB.usuarios.some(u => u.usuario === usuario);
+            let counter = 1;
+            let baseUsuario = usuario;
+            while (exists) {
+                usuario = baseUsuario + counter;
+                exists = DB.recicladores.some(r => r.usuario === usuario) || DB.usuarios.some(u => u.usuario === usuario);
+                counter++;
+            }
+
+            const nuevoReciclador = {
+                id: nextId.reciclador++,
+                nombre: nombre,
+                dni: dni,
+                telefono: celular,
+                direccion: direccion,
+                usuario: usuario,
+                clave: "123456",
+                materiales: materiales,
+                zona: direccion, // usamos la dirección como zona por simplicidad
+                foto: null,
+                calificacion: 5.0,
+                estado: "online",
+                disponible: true
+            };
+
+            DB.recicladores.push(nuevoReciclador);
+            showToast(`Reciclador registrado. Tu usuario: ${usuario}, clave: 123456`, 'success');
+            closeRegisterRecicladorModal();
+            openLoginModal();
         }
 
         // ==================== ACTUALIZAR UI ====================
